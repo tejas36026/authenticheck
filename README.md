@@ -10,17 +10,14 @@ This project is currently a **fully client-side application** that uses `localSt
 
 ## ✨ Key Features
 
-*   **Typed vs. Pasted Analysis:** Visually distinguishes between content that was typed by the user and content that was pasted from an external source.
+*   **Typed vs. Pasted Analysis:**  Identify distinguishes between content that was typed by the user and content that was pasted from an external source.
 *   **Sentence-by-Sentence Forensics:** Breaks down the entire text into sentences and analyzes each one for:
     *   Typing Speed (WPM)
     *   Time taken to write
     *   Number of corrections (backspaces, deletes)
-*   **Live Statistics:** A real-time stats bar shows session time, character counts, paste counts, and average typing speed.
 *   **Interactive Dashboard:** A comprehensive dashboard that aggregates all session data and visualizes it with interactive charts, showing:
     *   Overall text composition (Typed vs. Pasted)
-    *   Activity trends over time
     *   Per-sentence WPM, duration, and correction analysis
-*   **Themeable UI:** Includes multiple themes (AuthentiCheck Dark, Light, Dark, Blue Neon) for a personalized user experience.
 *   **Zero Backend Required:** Runs entirely in the browser, making it easy to deploy and test.
 
 ---
