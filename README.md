@@ -11,7 +11,7 @@ This project is currently a **fully client-side application** that uses `localSt
 ## ✨ Key Features
 
 *   **Typed vs. Pasted Analysis:**  Identify distinguishes between content that was typed by the user and content that was pasted from an external source.
-*   **Sentence-by-Sentence Forensics:** Breaks down the entire text into sentences and analyzes each one for:
+*   **Sentence-by-Sentence Forensics:** 
     *   Typing Speed (WPM)
     *   Time taken to write
     *   Number of corrections (backspaces, deletes)
