@@ -15,7 +15,7 @@ This project is currently a **fully client-side application** that uses `localSt
     *   Typing Speed (WPM)
     *   Time taken to write
     *   Number of corrections (backspaces, deletes)
-*   **Interactive Dashboard:** A comprehensive dashboard that aggregates all session data and visualizes it with interactive charts, showing:
+*   **Interactive Dashboard:** A comprehensive dashboard that aggregates all session data a:
     *   Overall text composition (Typed vs. Pasted)
     *   Per-sentence WPM, duration, and correction analysis
 *   **Zero Backend Required:** Runs entirely in the browser, making it easy to deploy and test.
@@ -49,8 +49,7 @@ This self-contained model makes it perfect for demos, but would require a backen
 | `index.html`       | A marketing-style landing page describing the product's capabilities.                                         |
 | `track.html`       | The core application page with the text editor where user activity is tracked.                                |
 | `main.js`          | The heart of the application. Contains all the logic for tracking typing, pasting, and sentence analysis.     |
-| `dashboard.html`   | The analysis dashboard page that contains all the charts and metrics.                                         |
-| `dashboard.js`     | The script that loads data from `localStorage`, performs calculations, and renders all the charts.            |
+| `dashboard.js`     | The script that loads data from `localStorage`, performs calculations,etc|
 
 ---
 
