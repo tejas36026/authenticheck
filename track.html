@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Typing Tracker</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif; /* Default, theme can override */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* DEFAULT THEME VARIABLES (Light) */
+        :root {
+            --body-background-color: #f4f6f8;
+            --editor-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.9);
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --border-color: #e0e0e0;
+            --color-primary-01: #3498db; /* Pleasant blue */
+            --color-error: #e74c3c;
+            --color-warning: #f39c12;
+            --color-success: #2ecc71;
+            --btn-primary-bg: var(--color-primary-01);
+            --btn-primary-text: #ffffff;
+            --btn-hover-bg: #2980b9;
+            --highlight-red-bg: rgba(231, 76, 60, 0.25);    /* Pasted */
+            --highlight-yellow-bg: rgba(243, 156, 18, 0.15); /* Typed no correction */
+            --highlight-green-bg: rgba(46, 204, 113, 0.1);  /* Corrected */
+            --modal-content-bg: var(--editor-bg);
+            --modal-bg-overlay: rgba(0, 0, 0, 0.5);
+            --icon-stroke-color: var(--text-secondary);
+            --icon-stroke-color-active: var(--text-primary);
+            --font-family-base: sans-serif;
+        }
+
+        body { /* Apply base variables */
+            background-color: var(--body-background-color);
+            color: var(--text-primary);
+            font-family: var(--font-family-base);
+        }
+
+
+        body.theme-dark {
+            --body-background-color: #1a1d24;
+            --editor-bg: #232730;
+            --header-bg: rgba(35, 39, 48, 0.85);
+            --text-primary: #e0e0e0;
+            --text-secondary: #909090;
+            --border-color: #383c4a;
+            --color-primary-01: #5dade2; /* Lighter blue */
+            --color-error: #ff6b6b;
+            --color-warning: #ffc078;
+            --color-success: #76d7c4;
+            --btn-primary-bg: var(--color-primary-01);
+            --btn-primary-text: #1a1d24; /* Dark text on light blue button */
+            --btn-hover-bg: #4a90e2;
+            --highlight-red-bg: rgba(255, 107, 107, 0.2);
+            --highlight-yellow-bg: rgba(255, 192, 120, 0.2);
+            --highlight-green-bg: rgba(118, 215, 196, 0.15);
+            --modal-content-bg: var(--editor-bg);
+            --modal-bg-overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        body.theme-blue-neon {
+            --body-background-color: #0a0a23;
+            --editor-bg: #00001a;
+            --header-bg: rgba(10, 10, 40, 0.9);
+            --text-primary: #00e5ff;      /* Bright Neon Cyan */
+            --text-secondary: #00aacc;    /* Dimmer Neon Cyan */
+            --border-color: #0077ff;      /* Neon Blue Border */
+            --color-primary-01: #00e5ff;  /* Neon Cyan as primary accent */
+            --color-error: #ff3366;      /* Neon Pink/Red */
+            --color-warning: #ffff66;    /* Neon Yellow */
+            --color-success: #66ff66;    /* Neon Green */
+            --btn-primary-bg: var(--color-primary-01);
+            --btn-primary-text: #0a0a23; /* Dark text on bright button */
+            --btn-hover-bg: #00c4dd;
+            --highlight-red-bg: rgba(255, 51, 102, 0.3);
+            --highlight-yellow-bg: rgba(255, 255, 102, 0.3);
+            --highlight-green-bg: rgba(102, 255, 102, 0.2);
+            --modal-content-bg: var(--editor-bg);
+            --modal-bg-overlay: rgba(0, 10, 40, 0.8);
+            --font-family-base: 'VT323', monospace;
+        }
+        body.theme-blue-neon #jsEditor,
+        body.theme-blue-neon #highlighted-output-container {
+            caret-color: #00e5ff;
+        }
+        body.theme-blue-neon .dashboard-header h1,
+        body.theme-blue-neon .metric-card h3,
+        body.theme-blue-neon .metric-card .value,
+        body.theme-blue-neon .daily-insight-card h4 {
+            text-shadow: 0 0 3px var(--color-primary-01), 0 0 5px var(--color-primary-01);
+        }
+
+
+        /* NEW: AuthentiCheck Dark Theme (Default) */
+        body.theme-authenticheck-dark {
+            --body-background-color: #0A192F; /* Deep Blue from index.html */
+            --editor-bg: #112240;      /* Card background from index.html */
+            --header-bg: rgba(10, 25, 47, 0.85); /* Header from index.html */
+            --text-primary: #ccd6f6;   /* Light text from index.html */
+            --text-secondary: #8892b0; /* Secondary text from index.html */
+            --border-color: #1d3150;   /* Card border from index.html */
+            --color-primary-01: #64ffda; /* Teal accent from index.html */
+            --color-error: #ff5252;    /* Bright red for contrast */
+            --color-warning: #ffd700;  /* Gold/bright yellow for contrast */
+            --color-success: #64ffda;  /* Teal accent for success */
+            --btn-primary-bg: var(--color-primary-01);
+            --btn-primary-text: #0A192F; /* Dark blue text on teal button */
+            --btn-hover-bg: #52c4b3;    /* Darker teal for hover */
+            --highlight-red-bg: rgba(255, 82, 82, 0.15);   /* Pasted */
+            --highlight-yellow-bg: rgba(255, 215, 0, 0.1); /* Typed no correction */
+            --highlight-green-bg: rgba(100, 255, 218, 0.1);/* Corrected */
+            --modal-content-bg: var(--editor-bg);
+            --modal-bg-overlay: rgba(7, 17, 31, 0.7);
+            --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+        body.theme-authenticheck-dark #jsEditor,
+        body.theme-authenticheck-dark #highlighted-output-container {
+            caret-color: var(--color-primary-01);
+        }
+
+        /* General styles using CSS variables */
+        .header {
+            padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--header-bg);
+            backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo span { font-size: 1.5em; font-weight: bold; color: var(--color-primary-01); }
+        .actions-group { display: flex; align-items: center; gap: 12px; }
+        .btn {
+            padding: 8px 15px; font-size: 14px; font-weight: 500;
+            border: 1px solid var(--border-color); border-radius: 6px;
+            background-color: var(--editor-bg); color: var(--text-primary);
+            cursor: pointer; display: flex; align-items: center; gap: 6px;
+            white-space: nowrap; transition: all 0.2s ease-in-out;
+        }
+        .btn:hover:not(:disabled) {
+            background-color: var(--btn-hover-bg); color: var(--btn-primary-text);
+            transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .btn-primary {
+            background-color: var(--btn-primary-bg); color: var(--btn-primary-text);
+            border-color: var(--btn-primary-bg);
+        }
+        .btn-primary:hover:not(:disabled) {
+            background-color: var(--btn-hover-bg); border-color: var(--btn-hover-bg);
+        }
+        .btn svg { width: 16px; height: 16px; stroke: var(--icon-stroke-color); }
+        .btn-primary svg { stroke: var(--btn-primary-text); }
+        .btn:hover svg { stroke: var(--btn-primary-text); }
+
+        .theme-controls { display: flex; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+        .theme-controls .theme-btn {
+            padding: 8px 10px !important; border: none !important;
+            border-right: 1px solid var(--border-color) !important;
+            border-radius: 0 !important; background-color: transparent; color: var(--text-secondary);
+        }
+        .theme-controls .theme-btn:last-child { border-right: none !important; }
+        .theme-controls .theme-btn:hover { background-color: var(--btn-hover-bg) !important; color: var(--btn-primary-text) !important; transform: none; box-shadow: none;}
+        .theme-controls .theme-btn.active-theme { background-color: var(--btn-primary-bg) !important; color: var(--btn-primary-text) !important; }
+        .theme-controls .theme-btn.active-theme svg { stroke: var(--btn-primary-text) !important; }
+        .theme-controls .theme-btn svg { stroke: currentColor; } /* Let icon color follow button text color */
+
+        .main-content { display: flex; flex-direction: column; gap: 15px; padding: 15px; flex-grow: 1; }
+        .input-area {
+            display: flex; flex-direction: column; flex-grow: 1; min-height: 300px;
+            border: 1px solid var(--border-color); border-radius: 6px;
+            overflow: hidden; background-color: var(--editor-bg);
+        }
+        #jsEditor {
+            width: 100%; min-height: 150px; flex-grow: 1; padding: 12px;
+            font-size: 16px; line-height: 1.6; border: none;
+            background-color: transparent; color: var(--text-primary);
+            resize: vertical; box-sizing: border-box; font-family: inherit;
+        }
+        #jsEditor:focus { outline: none; }
+        textarea::placeholder { color: var(--text-secondary); opacity: 0.7; }
+
+        #highlighted-output-container {
+            background-color: transparent; min-height: 100px; max-height: 400px;
+            overflow-y: auto; font-size: 16px; line-height: 1.6;
+            padding: 12px; white-space: normal; word-break: break-word;
+            box-sizing: border-box; color: var(--text-primary); font-family: inherit;
+            text-align: left;
+
+        }
+        .segment-wrapper {
+            display: inline-block; position: relative;
+            margin: 20px 6px 5px 6px; /* Top margin for tooltip */
+            vertical-align: top;
+        }
+        .segment-text-content {
+            display: block; padding: 4px 6px; border-radius: 3px;
+            font-size: 1em; line-height: 1.5; white-space: pre-wrap;
+            min-width: 20px; text-align: center; box-sizing: border-box;
+        }
+        .segment-tooltip {
+            position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+            background-color: var(--editor-bg); color: var(--text-primary);
+            border: 1px solid var(--border-color); border-radius: 4px;
+            padding: 3px 7px; font-size: 0.75em; white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15); z-index: 10;
+            opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s;
+            margin-bottom: 5px;
+        }
+        .segment-wrapper:hover .segment-tooltip { opacity: 1; visibility: visible; }
+
+        /* Highlight Styles */
+        .highlight-yellow-typed { background-color: var(--highlight-yellow-bg); color: #000000; }
+        .highlight-red-pasted { background-color: var(--highlight-red-bg); color: #000000; }
+        .highlight-green-corrected { background-color: var(--highlight-green-bg); color: #000000; }
+
+        body.theme-dark .highlight-yellow-typed,
+        body.theme-dark .highlight-red-pasted,
+        body.theme-dark .highlight-green-corrected {
+            color: var(--text-primary); /* Off-white text for dark theme highlights */
+        }
+        body.theme-blue-neon .highlight-yellow-typed { color: var(--color-warning); text-shadow: 0 0 2px var(--color-warning); }
+        body.theme-blue-neon .highlight-red-pasted { color: var(--color-error); text-shadow: 0 0 2px var(--color-error); }
+        body.theme-blue-neon .highlight-green-corrected { color: var(--color-success); text-shadow: 0 0 2px var(--color-success); }
+
+        body.theme-authenticheck-dark .highlight-yellow-typed { color: var(--color-warning); }
+        body.theme-authenticheck-dark .highlight-red-pasted { color: var(--color-error); }
+        body.theme-authenticheck-dark .highlight-green-corrected { color: var(--color-success); }
+
+
+        .stats-bar {
+            padding: 10px 15px; background-color: var(--editor-bg);
+            border: 1px solid var(--border-color); border-radius: 6px;
+            font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 18px;
+            color: var(--text-secondary);
+        }
+        .stats-bar div { flex-shrink: 0; }
+        .stats-bar span { font-weight: 600; color: var(--text-primary); margin-left: 5px; }
+        body.theme-blue-neon .stats-bar span,
+        body.theme-authenticheck-dark .stats-bar span { text-shadow: 0 0 1px var(--text-primary); }
+
+
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--modal-bg-overlay);
+            display: none; justify-content: center; align-items: center;
+            z-index: 1050; animation: fadeInModalOverlay 0.3s ease-out forwards;
+        }
+        .modal-overlay.show { display: flex; }
+        .dashboard-modal-content {
+            background-color: var(--modal-content-bg);
+            border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 90%; height: 90vh; max-width: 1200px;
+            display: flex; flex-direction: column; overflow: hidden;
+            animation: slideInModalContent 0.4s ease-out forwards;
+        }
+        .dashboard-modal-header {
+            padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color); flex-shrink: 0;
+        }
+        .dashboard-modal-header h3 { margin: 0; font-size: 1.2em; font-weight: 600; color: var(--text-primary); }
+        body.theme-blue-neon .dashboard-modal-header h3,
+        body.theme-authenticheck-dark .dashboard-modal-header h3 { text-shadow: 0 0 2px var(--text-primary); }
+        .dashboard-modal-close-btn {
+            background: none; border: none; font-size: 1.8em; color: var(--text-secondary);
+            cursor: pointer; padding: 5px; line-height: 1;
+        }
+        .dashboard-modal-close-btn:hover { color: var(--color-error); }
+        .dashboard-modal-body { flex-grow: 1; padding: 0; overflow: hidden; }
+        .dashboard-modal-body iframe { width: 100%; height: 100%; border: none; }
+
+        @keyframes fadeInModalOverlay { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInModalContent {
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @media print {
+            body { background-color: white !important; color: black !important; font-family: Arial, sans-serif !important; }
+            :root { /* Override variables for print if necessary, or use direct values below */ }
+            .header, #jsEditor, .modal-overlay, .stats-bar { display: none !important; }
+            .main-content { padding: 0; }
+            #highlighted-output-container {
+                border: none !important; max-height: none !important; overflow: visible !important; font-size: 12pt !important;
+                background-color: white !important; color: black !important;
+            }
+            .segment-wrapper { margin: 2px 4px !important; }
+            .segment-text-content {
+                -webkit-print-color-adjust: exact !important; color-adjust: exact !important;
+                 color: black !important; /* Force black text for all segments on print */
+            }
+            .highlight-yellow-typed { background-color: #fffacd !important; } /* LemonChiffon */
+            .highlight-red-pasted { background-color: #ffcccb !important; } /* LightCoral */
+            .highlight-green-corrected { background-color: #90ee90 !important; } /* LightGreen */
+            .segment-tooltip { display: none !important; }
+        }
+        @media (max-width: 768px) {
+    .logo {
+        display: none !important;
+    }
+    .logo span
+    {
+        display: none !important;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span>AuthentiCheck</span>
+        </div>
+        <div class="actions-group">
+            <button class="btn btn-primary" id="analysisButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Analysis
+            </button>
+            <button  id="printButton" style="display: none !important;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"  style="display: none !important;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Print Output
+            </button>
+            <div class="theme-controls">
+                 <button class="btn theme-btn" id="themeAuthentiCheckDarkBtn" title="AuthentiCheck Dark Theme (Default)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </button>
+                <button class="btn theme-btn" id="themeLightBtn" title="Light Theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <button class="btn theme-btn" id="themeDarkBtn" title="Dark Theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="btn theme-btn" id="themeBlueNeonBtn" title="Blue Neon Theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="input-area">
+            <textarea id="jsEditor" placeholder="Start typing here... Your activity will be tracked."></textarea>
+            <div id="highlighted-output-container" style="display: none;"></div>
+        </div>
+        <div class="stats-bar">
+            <div>Session Time: <span id="statSessionTime">0s</span></div>
+            <div>Typed Chars: <span id="statTypedChars">0</span></div>
+            <div>Pasted Chars: <span id="statPastedChars">0</span></div>
+            <div>Avg. Speed: <span id="statAvgSpeed">0 WPM</span></div>
+            <div>Backspaces: <span id="statBackspaces">0</span></div>
+            <div>Deletes: <span id="statDeletes">0</span></div>
+            <div>Pastes: <span id="statPasteCount">0</span></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="dashboardModalOverlay">
+        <div class="dashboard-modal-content">
+            <div class="dashboard-modal-header">
+                <h3>Tracking Dashboard</h3>
+                <button class="dashboard-modal-close-btn" id="closeDashboardModalBtn">×</button>
+            </div>
+            <div class="dashboard-modal-body">
+                <iframe id="dashboardFrame" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html> 

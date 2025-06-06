@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Behavior Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script> <!-- Date adapter -->
+   
+    <script src="
+    https://cdn.jsdelivr.net/npm/kjua-svg@1.13.1/kjua.min.js
+    "></script>
+    
+    <style>
+ 
+:root { 
+    --body-background-color: #f4f6f8;
+    --editor-bg: #ffffff;
+    --header-bg: rgba(255, 255, 255, 0.9);
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border-color: #e0e0e0;
+    --color-primary-01: #3498db;
+    --color-error: #e74c3c;
+    --color-warning: #f39c12;
+    --color-success: #2ecc71;
+    --color-bar-1: rgba(52, 152, 219, 0.7);  /* Primary blue with opacity */
+    --color-bar-2: rgba(243, 156, 18, 0.7); /* Warning orange with opacity */
+    --color-line-1: rgba(52, 152, 219, 0.8);
+    --color-line-2: rgba(231, 76, 60, 0.8); /* Error red with opacity */
+    --btn-primary-bg: var(--color-primary-01);
+    --btn-primary-text: #ffffff;
+    --btn-hover-bg: #2980b9; /* Darker shade of primary blue */
+    --highlight-red-bg: rgba(231, 0, 0, 0.35);  /* Light red background for pasted */
+    --highlight-yellow-bg: rgba(243, 156, 18, 0.15);/* Light yellow background for typed */
+    --highlight-green-bg: rgba(46, 204, 113, 0.1); /* Light green background for corrected */
+    --color-warning-rgb: 243, 156, 18; /* For rgba in JS if needed */
+    --modal-content-bg: var(--editor-bg);
+    --modal-bg-overlay: rgba(0, 0, 0, 0.5);
+    --icon-stroke-color: var(--text-secondary);
+    --icon-stroke-color-active: var(--text-primary);
+}
+
+body.theme-dark {
+    --body-background-color: #1a1d24;
+    --editor-bg: #232730;
+    --header-bg: rgba(35, 39, 48, 0.85);
+    --text-primary: #e0e0e0;   /* Off-white */
+    --text-secondary: #909090;
+    --border-color: #383c4a;
+    --color-primary-01: #5dade2;
+    --color-error: #ff6b6b;    /* Lighter red for dark theme */
+    --color-warning: #ffc078;  /* Lighter yellow for dark theme */
+    --color-success: #76d7c4;  /* Lighter green for dark theme */
+
+    --color-bar-1: rgba(93, 173, 226, 0.7);
+    --color-bar-2: rgba(255, 192, 120, 0.7);
+    --color-line-1: rgba(93, 173, 226, 0.8);
+    --color-line-2: rgba(255, 107, 107, 0.8);
+    --btn-primary-bg: var(--color-primary-01);
+    --btn-primary-text: #1a1d24; /* Dark text on light blue button */
+    --btn-hover-bg: #4a90e2; /* Slightly different hover */
+
+    /* Highlight colors for TEXT SEGMENTS in DARK THEME */
+    --highlight-red-bg: rgba(255, 107, 107, 0.2);
+    --highlight-yellow-bg: rgba(255, 192, 120, 0.2);
+    --highlight-green-bg: rgba(118, 215, 196, 0.15);
+
+    --color-warning-rgb: 255, 192, 120;
+
+    --modal-content-bg: var(--editor-bg);
+    --modal-bg-overlay: rgba(0, 0, 0, 0.7);
+
+    --icon-stroke-color: var(--text-secondary);
+    --icon-stroke-color-active: var(--text-primary);
+}
+
+body.theme-blue-neon {
+    --body-background-color: #0a0a23;
+    --editor-bg: #00001a;
+    --header-bg: rgba(10, 10, 40, 0.9);
+    --text-primary: #00e5ff;      /* Bright Neon Cyan */
+    --text-secondary: #00aacc;
+    --border-color: #0077ff;
+    --color-primary-01: #00e5ff;
+    --color-error: #ff3366;      /* Neon Pink/Red */
+    --color-warning: #ffff66;    /* Neon Yellow */
+    --color-success: #66ff66;    /* Neon Green */
+    font-family: 'VT323', monospace;
+
+    --color-bar-1: rgba(0, 229, 255, 0.7);
+    --color-bar-2: rgba(255, 255, 102, 0.7);
+    --color-line-1: rgba(0, 229, 255, 0.8);
+    --color-line-2: rgba(255, 51, 102, 0.8);
+    --btn-primary-bg: var(--color-primary-01);
+    --btn-primary-text: #0a0a23; /* Dark text on bright button */
+    --btn-hover-bg: #00c4dd;
+
+    --highlight-red-bg: rgba(255, 51, 102, 0.3);
+    --highlight-yellow-bg: rgba(255, 255, 102, 0.3);
+    --highlight-green-bg: rgba(102, 255, 102, 0.2);
+
+    --color-warning-rgb: 255, 255, 102;
+
+    --modal-content-bg: var(--editor-bg);
+    --modal-bg-overlay: rgba(0, 10, 40, 0.8);
+
+    --icon-stroke-color: var(--text-secondary);
+    --icon-stroke-color-active: var(--text-primary);
+     font-family: 'VT323', monospace; /* Apply to whole body for neon */
+}
+
+/* Update icon colors */
+.btn svg, .theme-controls .theme-btn svg, .theme-controls-dashboard .theme-btn-dashboard svg {
+    stroke: var(--icon-stroke-color); /* Use CSS variable for stroke */
+}
+.btn:hover svg, .theme-btn:hover svg, .theme-btn-dashboard:hover svg {
+    stroke: var(--btn-primary-text); /* Or a specific hover icon color */
+}
+.theme-btn.active-theme svg, .theme-btn-dashboard.active-theme svg {
+    stroke: var(--btn-primary-text) !important; /* Ensure active icon matches text */
+}
+
+/* Ensure calendar picker icon inverts on dark/neon themes for date inputs */
+body.theme-dark .filters-container input[type="date"]::-webkit-calendar-picker-indicator,
+body.theme-blue-neon .filters-container input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+body.theme-light .filters-container input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: none; /* Explicitly reset for light theme */
+}
+
+/* Text input placeholder color */
+textarea::placeholder { color: var(--text-secondary); opacity: 0.7; }
+#jsEditor { opacity: 1; /* Remove the 0.3 opacity from jsEditor */ }
+
+/* General chart text color (Chart.js often needs direct config, but this helps some elements) */
+.chart-container text, .chart-container .tick text { /* SVG text elements */
+    fill: var(--text-secondary) !important;
+}
+.chart-container .chartjs-legend-title, .chart-container .chartjs-axis-title { /* Chart.js specific classes if they exist */
+    color: var(--text-secondary) !important;
+}
+body.theme-blue-neon .dashboard-header h1,
+body.theme-blue-neon .metric-card h3,
+body.theme-blue-neon .metric-card .value,
+body.theme-blue-neon .daily-insight-card h4 {
+    text-shadow: 0 0 3px var(--color-primary-01), 0 0 5px var(--color-primary-01);
+}
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dashboard-header h1 {
+           color: var(--color-primary-01);
+           margin: 0;
+           border-bottom: none;
+        }
+
+        .filters-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filters-container label {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .filters-container input[type="date"],
+        .filters-container button {
+            padding: 8px 12px;
+            background-color: var(--editor-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .filters-container input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1); /* Make calendar icon visible on dark backgrounds */
+        }
+
+
+        .filters-container button {
+            cursor: pointer;
+            background-color: var(--color-primary-01);
+        }
+        .filters-container button:hover {
+            opacity: 0.9;
+        }
+
+        .print-dashboard-btn {
+            padding: 8px 12px;
+            background-color: #28a745; /* Green for general print */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+         .print-dashboard-btn:hover { opacity: 0.9; }
+
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .metric-card {
+            background-color: var(--editor-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            position: relative; /* For print button */
+        }
+        .metric-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .metric-card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .metric-card .value {
+            font-size: 2em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .metric-card .details {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .metric-card .details div { margin-bottom: 5px; }
+        .metric-card .details span {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-left: 6px;
+        }
+        .metric-card small {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .print-element-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 4px;
+            padding: 4px 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .print-element-btn:hover { opacity: 1; background: rgba(255,255,255,0.2); }
+        .print-element-btn svg { width: 14px; height: 14px; vertical-align: middle; }
+
+        .chart-container {
+             margin-top: 15px;
+             position: relative;
+             height: 300px; /* Default chart height */
+             width: 100%;
+        }
+         canvas { max-width: 100%; max-height: 100%; }
+
+        #dailyInsightsContainer h2 {
+            margin-top: 30px;
+        }
+        .daily-insight-card {
+            background-color: var(--editor-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .daily-insight-card h4 {
+            margin-top: 0;
+            color: var(--color-primary-01);
+        }
+
+        .daily-insight-card p {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .daily-insight-card p strong { color: var(--text-primary); }
+
+
+        .refresh-button { /* Already styled in your example */ }
+
+        @media print {
+            body {
+                background-color: white !important; /* Force white background for print */
+                color: black !important; /* Force black text for print */
+                margin: 20px;
+                padding: 0;
+                font-size: 10pt;
+            }
+
+            .dashboard-header, .filters-container, .refresh-button, .download-button, .print-dashboard-btn, .print-element-btn, .theme-controls-dashboard {
+                display: none !important;
+            }
+            .dashboard-grid, .daily-insight-card, .metric-card.full-width {
+                display: block !important;
+                grid-template-columns: 1fr !important; /* Stack cards */
+                width: 100% !important;
+            }
+            .metric-card, .daily-insight-card {
+                border: 1px solid #cccccc !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                margin-bottom: 15px !important;
+                background-color: white !important; /* Force white background for cards */
+            }
+
+            .metric-card h3, .metric-card .value, .metric-card .details, .metric-card .details span, .metric-card small,
+            .daily-insight-card h4, .daily-insight-card p, .daily-insight-card p strong,
+            #dashboardHighlightedText { /* Ensure dashboard text area text is black */
+                color: black !important;
+            }
+
+            .chart-container {
+                height: auto !important;
+                width: 100% !important;
+                page-break-inside: avoid !important;
+            }
+
+            canvas {
+                max-width: 100% !important;
+                border: 1px solid #eeeeee;
+            }
+
+            h1, h2 { /* Dashboard main titles */
+                color: black !important;
+                border-bottom: 1px solid #666666 !important;
+            }
+
+            /* Styles for ANALYZED TEXT in print */
+            #dashboardHighlightedText {
+                background-color: white !important; /* White background for the text area */
+                border: 1px solid #ccc !important;
+                color: black !important; /* Ensure fallback text is black */
+                max-height: none !important; /* Allow full text in print */
+                overflow-y: visible !important; /* No scrollbar in print */
+            }  
+
+            #dashboardHighlightedText .segment-wrapper {
+                margin: 2px 4px !important; /* Reduce margin for print */
+            }
+
+            #dashboardHighlightedText .segment-text-content { /* Text block itself */
+                display: block; /* Or inline-block if that's your layout */
+            padding: 4px 6px;
+            border-radius: 3px;
+            font-size: 1em; /* Adjust as needed for print */
+            line-height: 1.5;
+            white-space: pre-wrap !important; /* Important for preserving formatting */
+            min-width: 25px;
+            text-align: center;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important; /* Force printing of backgrounds */
+            color-adjust: exact !important;             /* Force printing of backgrounds */
+
+        }
+
+
+
+
+        /* Explicit background colors for segment highlights IN PRINT */
+        #dashboardHighlightedText .highlight-yellow-typed {
+            background-color: #fffacd !important; /* Light Yellow (LemonChiffon) */
+        }
+        #dashboardHighlightedText .highlight-red-pasted {
+            background-color: #ffcccb !important; /* Light Red (LightCoral) */
+        }
+        #dashboardHighlightedText .highlight-green-corrected {
+            background-color: #90ee90 !important; /* Light Green */
+        }
+    }
+
+        /* Add this to dashboard.html's <style> block, along with body theme variable definitions */
+        .theme-controls-dashboard .theme-btn-dashboard svg {
+            stroke: var(--text-secondary); /* Initial icon color */
+        }
+        .theme-controls-dashboard .theme-btn-dashboard:hover svg {
+            stroke: var(--btn-primary-text);
+        }
+        .theme-controls-dashboard .theme-btn-dashboard.active-theme {
+            background-color: var(--btn-primary-bg) !important;
+            color: var(--btn-primary-text) !important;
+        }
+        .theme-controls-dashboard .theme-btn-dashboard.active-theme svg {
+            stroke: var(--btn-primary-text) !important;
+        }
+
+        /* General styling for dashboard elements if they don't pick up variables correctly */
+        .dashboard-header h1 { color: var(--color-primary-01); /* Ensure this uses theme variable */ }
+        .filters-container label { color: var(--text-secondary); }
+        .filters-container input[type="date"],
+        .filters-container button {
+            background-color: var(--editor-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-dark .filters-container input[type="date"]::-webkit-calendar-picker-indicator,
+        .theme-blue-neon .filters-container input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+
+        .metric-card {
+            background-color: var(--editor-bg);
+            border: 1px solid var(--border-color);
+        }
+        .metric-card h3 {
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .metric-card .value { color: var(--text-primary); }
+        .metric-card .details, .metric-card small { color: var(--text-secondary); }
+        .metric-card .details span { color: var(--text-primary); }
+        .daily-insight-card {
+            background-color: var(--editor-bg);
+            border: 1px solid var(--border-color);
+        }
+        .daily-insight-card h4 { color: var(--color-primary-01); }
+        .daily-insight-card p strong { color: var(--text-primary); }
+
+        /* Chart.js text color based on theme */
+        /* This might need adjustment based on how Chart.js handles colors */
+        .chart-container canvas { /* This is a general selector, might need more specific if Chart.js creates wrappers */
+            /* Chart.js typically handles its own colors, but you can set defaults */
+        }
+        .theme-dark .chart-container text, .theme-dark .chart-container .tick text,
+        .theme-blue-neon .chart-container text, .theme-blue-neon .chart-container .tick text {
+            fill: var(--text-secondary) !important; /* Try to force Chart.js legend/axis text color */
+        }
+        .theme-dark .chart-container .chartjs-legend-title, .theme-dark .chart-container .chartjs-axis-title,
+        .theme-blue-neon .chart-container .chartjs-legend-title, .theme-blue-neon .chart-container .chartjs-axis-title {
+            color: var(--text-secondary) !important;
+        }
+        body.theme-blue-neon {
+
+        }
+        .theme-blue-neon .dashboard-header h1,
+        .theme-blue-neon .metric-card h3,
+        .theme-blue-neon .metric-card .value,
+        .theme-blue-neon .daily-insight-card h4 {
+            text-shadow: 0 0 3px var(--color-primary-01), 0 0 5px var(--color-primary-02, #0077ff);
+        }
+
+
+        .highlighted-text-output-dashboard {
+            background-color: var(--editor-bg); /* Match card background or make it distinct */
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+            font-family: var(--font-family-monospace); /* From your root vars */
+            font-size: 14px; /* Slightly smaller for dashboard view */
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-all;
+            /* max-height: 300px; */ /* Or as desired - REMOVED FOR FULL DISPLAY */
+            /* overflow-y: auto; */ /* REMOVED FOR FULL DISPLAY */
+            color: var(--text-primary); /* Ensure text is visible */
+        }
+
+            
+
+        .highlight-fast-no-mistake { background-color: var(--highlight-yellow-bg); border-bottom: 2px solid var(--color-warning); font-weight: 500;}
+
+
+        .highlight-slow { background-color: var(--highlight-green-bg); opacity: 0.85; } /* Can also be green */
+        .highlight-typed { /* Default, no specific background or slight tint if needed */ }
+        .highlight-anomaly-speed { color: var(--color-error) !important; font-weight: bold; border-bottom: 2px dashed var(--color-error); } /* For the text itself to be red */
+
+
+        .highlight-fast-no-mistake { background-color: var(--highlight-yellow-bg); border-bottom: 2px solid var(--color-warning); font-weight: 500;}
+                .highlight-corrected-slow { background-color: var(--highlight-green-bg); }
+                .theme-blue-neon .highlight-pasted { text-shadow: 0 0 3px var(--color-error); }
+                .theme-blue-neon .highlight-fast-no-mistake { text-shadow: 0 0 3px var(--color-warning); }
+                .theme-blue-neon .highlight-corrected-slow { text-shadow: 0 0 3px var(--color-success); }
+
+                .highlight-wpm-spike {
+            background-color: rgba(231, 76, 60, 0.15); /* Lighter red background (similar to --highlight-red-bg) */
+            /* color: #c0392b; */ /* Darker red text for contrast on light red bg, or use var(--color-error) */
+            /* border-bottom: 1px dashed var(--color-error); */
+            font-style: italic; /* Adding some distinction */
+        }
+        .highlight-anomaly-speed {
+            /* This class is also used for chart points. For text, make it distinct: */
+            background-color: rgba(231, 76, 60, 0.15); /* Light red background */
+            color: var(--color-error); /* Keep text red */
+            font-weight: normal; /* Normal weight for text, chart point is bold */
+            /* border-bottom: 1px dotted var(--color-error); */ /* Softer border for text */
+        }
+
+
+        .highlight-slow { background-color: var(--highlight-green-bg); opacity: 0.85; } /* Can also be green */
+        /* If you had specific classes from main.js for backspace/undo, style them green: */
+        /* .highlight-corrected-by-backspace { background-color: var(--highlight-green-bg); } */
+        /* .highlight-corrected-by-undo { background-color: var(--highlight-green-bg); } */
+
+        /* Yellow variants (for the 3-consecutive rule) */
+        .highlight-fast-no-mistake { background-color: var(--highlight-yellow-bg); border-bottom: 2px solid var(--color-warning); font-weight: 500;}
+
+
+
+
+        /* For the >30% WPM increase - "light red" */
+        .highlight-wpm-spike {
+            background-color: rgba(231, 76, 60, 0.15); /* Lighter red background (similar to --highlight-red-bg) */
+            /* color: #c0392b; */ /* Darker red text for contrast on light red bg, or use var(--color-error) */
+            /* border-bottom: 1px dashed var(--color-error); */
+            font-style: italic; /* Adding some distinction */
+        }
+
+        /* If 'highlight-anomaly-speed' is already used by main.js for WPM spikes and should be light red FOR TEXT */
+        .highlight-anomaly-speed {
+            /* This class is also used for chart points. For text, make it distinct: */
+            background-color: rgba(231, 76, 60, 0.15); /* Light red background */
+            color: var(--color-error); /* Keep text red */
+            font-weight: normal; /* Normal weight for text, chart point is bold */
+            /* border-bottom: 1px dotted var(--color-error); */ /* Softer border for text */
+        }
+
+
+.highlight-slow {
+    background-color: var(--highlight-green-bg);
+    opacity: 0.85;
+}
+
+/* Yellow Variants */
+.highlight-fast-no-mistake {
+    background-color: var(--highlight-yellow-bg);
+    border-bottom: 2px solid var(--color-warning);
+    font-weight: 500;
+}
+
+
+
+/* For the >30% WPM increase - "light red" text highlight */
+.highlight-wpm-spike {
+    background-color: rgba(231, 76, 60, 0.1); /* Very light red background */
+    color: var(--color-error); /* Red text */
+    /* border-bottom: 1px dashed var(--color-error); */
+    font-style: italic;
+}
+
+/* If 'highlight-anomaly-speed' is used for WPM spikes text */
+.highlight-anomaly-speed {
+    background-color: rgba(231, 76, 60, 0.1); /* Very light red background */
+    color: var(--color-error);                /* Red text */
+    font-weight: normal;                      /* Normal for text (chart points might be bold) */
+    /* border-bottom: 1px dotted var(--color-error); */
+}
+
+/* Default typed text (optional, if you want a very subtle distinction) */
+.highlight-typed {
+    /* No specific background by default, or a very subtle one */
+    /* background-color: rgba(0,0,0,0.01); */
+}
+
+
+/* Theme-specific overrides for better contrast/effect on Neon */
+body.theme-blue-neon .highlight-corrected {
+    background-color: var(--highlight-green-bg) !important; /* Ensure it overrides */
+    text-shadow: 0 0 3px var(--color-success);
+}
+body.theme-blue-neon .highlight-pasted { text-shadow: 0 0 3px var(--color-error); }
+body.theme-blue-neon .highlight-fast-no-mistake { text-shadow: 0 0 3px var(--color-warning); }
+body.theme-blue-neon .highlight-no-mistake {
+    background-color: rgba(var(--color-warning-rgb), 0.2);
+    text-shadow: 0 0 2px var(--color-warning);
+}
+body.theme-blue-neon .highlight-slow {
+    opacity: 0.9;
+    text-shadow: 0 0 2px var(--color-success);
+}
+body.theme-blue-neon .highlight-wpm-spike,
+body.theme-blue-neon .highlight-anomaly-speed {
+    background-color: rgba(255, 51, 102, 0.2); /* Neon light red background */
+    color: var(--color-error);                 /* Neon red text */
+    text-shadow: 0 0 3px var(--color-error);
+}
+.highlight-pasted {
+  color: #000000 !important; /* Added !important for testing to override other rules */
+  /* You can also add other styles if you like, e.g., a light red background */
+  background-color: #ff0000;
+}
+
+.highlight-no-mistake {
+  color: #000000; /* Example yellow - adjust to your actual yellow */
+  background-color: #ffff00; /* Example light yellow background */
+}
+
+.highlight-corrected {
+  color: #000000;
+  background-color: #00ff00;
+}
+        @media print {
+            body { background-color: white; color: black;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+ }
+            .header, .input-area textarea, .modal-overlay { display: none !important; }
+            .main-content { padding: 0; }
+            #highlighted-output-container {
+                border: none; max-height: none; overflow: visible; font-size: 12pt;
+                background-color: white !important; color: black !important;
+            }
+            .highlight-pasted, .highlight-fast-no-mistake, .highlight-corrected-slow {
+                background-color: transparent !important; color: black !important;
+            }
+
+            .highlight-fast-no-mistake { font-style: italic; }
+            .highlight-corrected-slow { opacity: 0.8; }
+            .stats-bar { display: none; }
+        }
+
+        .highlight-slow { background-color: var(--highlight-green-bg); opacity: 0.85; }
+
+.chart-nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.chart-nav-btn { /* Use your .btn .btn-sm styling or adapt */
+    padding: 5px 10px;
+    font-size: 0.9em;
+    background-color: var(--editor-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: 4px;
+}
+.chart-nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.chart-nav-btn:hover:not(:disabled) {
+    background-color: var(--btn-hover-bg);
+    color: var(--btn-primary-text);
+}
+
+.segment-stats-tooltip {
+    display: inline-block; /* Or 'block' if you want it on a new line */
+    margin-left: 8px;     /* Space it out from the sentence text */
+    padding: 2px 5px;
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 0.8em;      /* Smaller font for the stats */
+    color: #333;
+    /* white-space: nowrap; /* Prevent wrapping if stats are short */
+}
+
+.segment-stats-tooltip span {
+    margin-right: 8px; /* Space between individual stats */
+}
+.segment-stats-tooltip span:last-child {
+    margin-right: 0;
+}
+.segment-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+.segment-stats-tooltip {
+    display: block; 
+    margin-left: 0;
+    margin-top: 3px; 
+    background-color: var(--editor-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+body.theme-dark .segment-stats-tooltip {
+    background-color: #3a3f4b; /* Darker grey */
+    border-color: #505562;
+    color: #ccc;
+}
+
+body.theme-blue-neon .segment-stats-tooltip {
+    background-color: #002244; /* Dark neon blue */
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+    box-shadow: 0 0 3px var(--text-secondary);
+    font-family: 'Courier New', Courier, monospace; /* Or your neon font */
+}
+
+
+
+
+
+/* Styles for sentence container and tooltips (Matches index.html) */
+/* Ensure .highlighted-text-output-dashboard is the parent in dashboard.html */
+.highlighted-text-output-dashboard {
+    /* Add or adjust existing styles like border, padding, height, overflow-y */
+    white-space: normal; /* Allows inline-block children to wrap */
+    line-height: 1.8;    /* Increased for better readability */
+    padding: 10px;       /* Example padding */
+    /* border: 1px solid var(--border-color); */ /* Already in .metric-card styling */
+    /* max-height: 300px; */ /* Already set, but will be overridden by ID */
+    /* overflow-y: auto; */  /* Already set, but will be overridden by ID */
+}
+
+/* index.html <style> section */
+
+/* ... (keep your :root, body.theme-dark, body.theme-blue-neon variable definitions for --highlight-*-bg etc.) ... */
+
+/* --- Base styles for segment text content --- */
+
+/* --- Core Highlighting Logic --- */
+/* Default (effectively light theme if no body class or body.theme-light) */
+.highlight-yellow-typed {
+    background-color: var(--highlight-yellow-bg); /* Uses :root version */
+    color: #000000; /* Black text on light yellow */
+}
+.highlight-red-pasted {
+    background-color: var(--highlight-red-bg);   /* Uses :root version */
+    color: #000000; /* Black text on light red */
+}
+.highlight-green-corrected {
+    background-color: var(--highlight-green-bg); /* Uses :root version */
+    color: #000000; /* Black text on light green */
+}
+
+/* Dark Theme Overrides */
+body.theme-dark .highlight-yellow-typed {
+    background-color: var(--highlight-yellow-bg); /* Uses body.theme-dark version */
+    color: var(--text-primary); /* Uses body.theme-dark --text-primary (e.g., off-white) */
+}
+body.theme-dark .highlight-red-pasted {
+    background-color: var(--highlight-red-bg);   /* Uses body.theme-dark version */
+    color: var(--text-primary); /* Uses body.theme-dark --text-primary */
+}
+body.theme-dark .highlight-green-corrected {
+    background-color: var(--highlight-green-bg); /* Uses body.theme-dark version */
+    color: var(--text-primary); /* Uses body.theme-dark --text-primary */
+}
+
+/* Blue Neon Theme Overrides */
+body.theme-blue-neon .highlight-yellow-typed {
+    background-color: var(--highlight-yellow-bg); /* Uses body.theme-blue-neon version */
+    color: var(--color-warning); /* Explicit neon yellow TEXT */
+
+}
+body.theme-blue-neon .highlight-red-pasted {
+    background-color: var(--highlight-red-bg);   /* Uses body.theme-blue-neon version */
+    color: var(--color-error);   /* Explicit neon red TEXT */
+
+}
+body.theme-blue-neon .highlight-green-corrected {
+    background-color: var(--highlight-green-bg); /* Uses body.theme-blue-neon version */
+    color: var(--color-success); /* Explicit neon green TEXT */
+
+}
+
+/* Tooltip theming (should be mostly correct from your existing code) */
+.segment-tooltip {
+    /* ... existing general tooltip styles ... */
+    background-color: var(--editor-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary); /* Primary text color of the current theme */
+}
+
+body.theme-dark .segment-tooltip {
+    background-color: #3a3f4b; /* Specific dark theme override */
+    border-color: #505562;    /* Specific dark theme override */
+    color: #e0e0e0;            /* Specific dark theme override */
+}
+
+body.theme-blue-neon .segment-tooltip {
+    background-color: #001f3f;            /* Specific neon theme override */
+    border-color: var(--text-secondary); /* Uses neon theme's secondary text for border */
+    color: var(--text-primary);          /* Uses neon theme's primary text for tooltip text */
+    box-shadow: 0 0 3px var(--text-secondary);
+}
+
+/* --- IMPORTANT: Ensure no other conflicting rules for these classes --- */
+/* Search your CSS for any other instances of:
+   .highlight-yellow-typed
+   .highlight-red-pasted
+   .highlight-green-corrected
+   .segment-text-content
+   And remove or comment out any hardcoded `color` or `background-color` properties
+   that might be overriding these theme-based rules, especially if they use `!important`.
+*/
+.highlighted-text-output-dashboard .sentence-block { /* Target within dashboard context */
+    display: inline-block;
+    margin-right: 0.6em;
+    margin-bottom: 0.4em;
+    padding: 3px 5px;
+    border-radius: 4px;
+    vertical-align: top;
+    /* Optional: background based on theme if desired for the block itself */
+    /* background-color: rgba(var(--text-primary-rgb, 0,0,0), 0.03); */
+}
+
+/* Spans within sentence-block (the actual text parts) */
+.highlighted-text-output-dashboard .sentence-block span {
+    display: inline;
+    white-space: pre-wrap; /* Respects newlines and spaces within the text */
+}
+
+/* Styles for the always-visible tooltip data in dashboard */
+.tooltip-visible-data-dashboard { /* Using a distinct class for dashboard styling */
+    display: inline;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    font-style: italic;
+    padding: 1px 4px;
+    border-radius: 3px;
+    opacity: 0.85;
+}
+
+/* Theme-specific styling for the visible tooltip in dashboard */
+body.theme-light .tooltip-visible-data-dashboard {
+    color: #555;
+    background-color: rgba(0,0,0,0.04);
+}
+body.theme-dark .tooltip-visible-data-dashboard {
+    color: #bbb;
+    background-color: rgba(255,255,255,0.08);
+}
+body.theme-blue-neon .tooltip-visible-data-dashboard {
+    color: #a0d8ff;
+    background-color: rgba(0, 50, 100, 0.4);
+}
+
+
+#highlighted-output-container {
+    padding: 10px; /* Ensure consistent padding */
+    line-height: 1; /* Reset if it causes issues */
+    text-align: left; /* Or your desired alignment for the row of segments */
+}
+
+.segment-wrapper {
+    display: inline-block; /* Segments flow inline but act as blocks */
+    position: relative;
+    /* Top margin for tooltip, 8px side margins giving 16px total between blocks */
+    margin: 25px 8px 5px 8px;
+    vertical-align: top; /* Align blocks from their top edge */
+}
+
+.segment-tooltip {
+    bottom: 100%; /* Position directly above the wrapper's top edge */
+    left: 50%;
+    margin-bottom: 4px; /* Space between tooltip and segment block */
+    padding: 3px 6px;
+    background-color: var(--editor-bg); /* Use theme variable for background */
+    border: 1px solid var(--border-color); /* Use theme variable for border */
+    color: var(--text-primary); /* Use theme variable for text */
+    border-radius: 4px;
+    font-size: 0.75em;
+    white-space: normal; /* Allow tooltip text to wrap to multiple lines */
+    max-width: 170px;    /* SLIGHTLY REDUCED: Max width for a tooltip (was 180px) */
+    min-width: 60px;     /* ADDED: Minimum width for a tooltip to prevent it becoming too squished */
+    word-break: break-word; /* Helps break long words if necessary */
+    text-align: center;  /* Center text within the tooltip, especially if it wraps */
+    z-index: 10;         /* Ensure tooltip is above segment text */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+
+
+#dashboardHighlightedText {
+            padding: 10px;
+            line-height: 1;
+            text-align: left;
+            background-color: var(--editor-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: var(--font-family-monospace, monospace);
+            font-size: 14px;
+            white-space: pre-wrap; /* Allows wrapping of segment blocks */
+            word-break: break-all;
+            /* max-height: 300px; REMOVED FOR FULL DISPLAY */
+            /* overflow-y: auto; REMOVED FOR FULL DISPLAY */
+            max-height: none; /* ADDED FOR FULL DISPLAY */
+            overflow-y: visible; /* ADDED FOR FULL DISPLAY */
+            color: var(--text-primary);
+        }
+
+/* Wrapper for each segment block + its tooltip */
+
+/* The colored text block itself */
+
+
+
+
+/* Dark Theme Highlight Overrides (applied if body.theme-dark) */
+body.theme-dark #dashboardHighlightedText .highlight-yellow-typed {
+    background-color: var(--highlight-yellow-bg); /* Uses body.theme-dark variable */
+    color: var(--text-primary); /* Uses body.theme-dark --text-primary (e.g., off-white) */
+}
+body.theme-dark #dashboardHighlightedText .highlight-red-pasted {
+    background-color: var(--highlight-red-bg);   /* Uses body.theme-dark variable */
+    color: var(--text-primary); /* Uses body.theme-dark --text-primary */
+}
+body.theme-dark #dashboardHighlightedText .highlight-green-corrected {
+    background-color: var(--highlight-green-bg); /* Uses body.theme-dark variable */
+    color: var(--text-primary); /* Uses body.theme-dark --text-primary */
+}
+
+/* Blue Neon Theme Highlight Overrides (applied if body.theme-blue-neon) */
+body.theme-blue-neon #dashboardHighlightedText .highlight-yellow-typed {
+    background-color: var(--highlight-yellow-bg); /* Uses body.theme-blue-neon variable */
+    color: var(--color-warning); /* Explicit neon yellow TEXT */
+
+}
+body.theme-blue-neon #dashboardHighlightedText .highlight-red-pasted {
+    background-color: var(--highlight-red-bg);   /* Uses body.theme-blue-neon variable */
+    color: var(--color-error);   /* Explicit neon red TEXT */
+
+}
+body.theme-blue-neon #dashboardHighlightedText .highlight-green-corrected {
+    background-color: var(--highlight-green-bg); /* Uses body.theme-blue-neon variable */
+    color: var(--color-success); /* Explicit neon green TEXT */
+
+}
+
+
+
+/* Theme-specific tooltip colors for dashboard */
+body.theme-dark #dashboardHighlightedText .segment-tooltip {
+    background-color: #3a3f4b; /* Darker background for tooltip */
+    border-color: #505562;    /* Darker border */
+    color: #e0e0e0;            /* Light text */
+}
+
+body.theme-blue-neon #dashboardHighlightedText .segment-tooltip { /* Added specificity */
+    background-color: #001f3f;
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+}
+
+
+/* In dashboard.html <style> */
+    #dashboardHighlightedText {
+    padding: 10px;
+    line-height: 1; /* Base line-height for the container */
+    text-align: left;
+    background-color: var(--editor-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: var(--font-family-monospace, monospace);
+    font-size: 14px;
+    white-space: pre-wrap; /* Allows wrapping of segment blocks if they exceed container width */
+    word-break: break-all; /* Might be too aggressive, consider 'break-word' if needed */
+    /* max-height: 300px; REMOVED FOR FULL DISPLAY */
+    /* overflow-y: auto; REMOVED FOR FULL DISPLAY */
+    max-height: none; /* ADDED FOR FULL DISPLAY */
+    overflow-y: visible; /* ADDED FOR FULL DISPLAY */
+    color: var(--text-primary); /* Default text color for the container (e.g., for <p> fallback) */
+}
+
+
+/* Wrapper for each segment block + its tooltip */
+#dashboardHighlightedText .segment-wrapper {
+            display: inline-block; /* KEY FOR INLINE FLOW */
+            position: relative;
+            margin: 25px 8px 5px 8px;
+            vertical-align: top;
+        }
+
+
+
+
+        :root {
+            --body-background-color: #f4f6f8;
+            --editor-bg: #ffffff; /* Used for card backgrounds, inputs */
+            --header-bg: rgba(255, 255, 255, 0.9);
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --border-color: #e0e0e0;
+            --color-primary-01: #3498db; /* Main accent */
+            --color-error: #e74c3c;
+            --color-warning: #f39c12;
+            --color-success: #2ecc71;
+            --color-bar-1: rgba(52, 152, 219, 0.7);
+            --color-bar-2: rgba(243, 156, 18, 0.7);
+            --color-line-1: rgba(52, 152, 219, 0.8);
+            --color-line-2: rgba(231, 76, 60, 0.8);
+            --highlight-red-bg: rgba(231, 76, 60, 0.25);    /* Pasted background */
+            --highlight-yellow-bg: rgba(243, 156, 18, 0.15); /* Typed no correction background */
+            --highlight-green-bg: rgba(46, 204, 113, 0.1);  /* Corrected background */
+            --font-family-base: 'Inter', sans-serif; /* Default font */
+            --font-family-monospace: 'Courier New', Courier, monospace; /* For code/text areas if needed */
+        }
+
+        body {
+            background-color: var(--body-background-color);
+            color: var(--text-primary);
+            font-family: var(--font-family-base);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-sizing: border-box;
+        }
+        *, *::before, *::after { box-sizing: inherit; }
+
+        body.theme-authenticheck-dark { /* NEW DEFAULT THEME */
+            --body-background-color: #0A192F;
+            --editor-bg: #112240;
+            --header-bg: rgba(10, 25, 47, 0.85); /* Matches index.html header slightly more opaque */
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --border-color: #1d3150;
+            --color-primary-01: #64ffda; /* Teal accent */
+            --color-error: #ff5252;    /* Bright red for error text */
+            --color-warning: #ffd700;  /* Gold/bright yellow for warning text */
+            --color-success: #64ffda;  /* Teal accent for success text */
+            --color-bar-1: rgba(100, 255, 218, 0.7);
+            --color-bar-2: rgba(255, 215, 0, 0.7);
+            --color-line-1: rgba(100, 255, 218, 0.8);
+            --color-line-2: rgba(255, 82, 82, 0.8);
+            --highlight-red-bg: rgba(255, 82, 82, 0.15);
+            --highlight-yellow-bg: rgba(255, 215, 0, 0.1);
+            --highlight-green-bg: rgba(100, 255, 218, 0.1);
+            --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        }
+
+        body.theme-light { /* Explicit Light Theme (same as :root defaults but good for specificity) */
+            /* Variables are already set in :root, this class ensures they apply if body has it */
+        }
+
+        body.theme-dark {
+            --body-background-color: #1a1d24;
+            --editor-bg: #232730;
+            --header-bg: rgba(35, 39, 48, 0.85);
+            --text-primary: #e0e0e0;
+            --text-secondary: #909090;
+            --border-color: #383c4a;
+            --color-primary-01: #5dade2;
+            --color-error: #ff6b6b;
+            --color-warning: #ffc078;
+            --color-success: #76d7c4;
+            --color-bar-1: rgba(93, 173, 226, 0.7);
+            --color-bar-2: rgba(255, 192, 120, 0.7);
+            --color-line-1: rgba(93, 173, 226, 0.8);
+            --color-line-2: rgba(255, 107, 107, 0.8);
+            --highlight-red-bg: rgba(255, 107, 107, 0.2);
+            --highlight-yellow-bg: rgba(255, 192, 120, 0.2);
+            --highlight-green-bg: rgba(118, 215, 196, 0.15);
+        }
+
+        body.theme-blue-neon {
+            --body-background-color: #0a0a23;
+            --editor-bg: #00001a;
+            --header-bg: rgba(10, 10, 40, 0.9);
+            --text-primary: #00e5ff;
+            --text-secondary: #00aacc;
+            --border-color: #0077ff;
+            --color-primary-01: #00e5ff;
+            --color-error: #ff3366;
+            --color-warning: #ffff66;
+            --color-success: #66ff66;
+            --font-family-base: 'VT323', monospace;
+            --font-family-monospace: 'VT323', monospace;
+            --color-bar-1: rgba(0, 229, 255, 0.7);
+            --color-bar-2: rgba(255, 255, 102, 0.7);
+            --color-line-1: rgba(0, 229, 255, 0.8);
+            --color-line-2: rgba(255, 51, 102, 0.8);
+            --highlight-red-bg: rgba(255, 51, 102, 0.3);
+            --highlight-yellow-bg: rgba(255, 255, 102, 0.3);
+            --highlight-green-bg: rgba(102, 255, 102, 0.2);
+        }
+        body.theme-blue-neon .dashboard-header h1,
+        body.theme-blue-neon .metric-card h3,
+        body.theme-blue-neon .metric-card .value,
+        body.theme-blue-neon .daily-insight-card h4,
+        body.theme-authenticheck-dark .dashboard-header h1, /* Apply similar text shadow for AuthentiCheck if desired */
+        body.theme-authenticheck-dark .metric-card h3 {
+            text-shadow: 0 0 2px var(--color-primary-01);
+        }
+
+        /* General Element Styling */
+        .dashboard-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .dashboard-header h1 { color: var(--color-primary-01); margin: 0; }
+
+        .filters-container { display: flex; gap: 15px; align-items: center; }
+        .filters-container label { font-size: 0.9em; color: var(--text-secondary); }
+        .filters-container input[type="date"],
+        .filters-container button {
+            padding: 8px 12px; background-color: var(--editor-bg);
+            color: var(--text-primary); border: 1px solid var(--border-color);
+            border-radius: 4px; font-size: 0.9em; font-family: inherit;
+        }
+        body.theme-dark .filters-container input[type="date"]::-webkit-calendar-picker-indicator,
+        body.theme-blue-neon .filters-container input[type="date"]::-webkit-calendar-picker-indicator,
+        body.theme-authenticheck-dark .filters-container input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+        .filters-container button { cursor: pointer; background-color: var(--color-primary-01); color: var(--btn-primary-text, #fff); }
+        body.theme-authenticheck-dark .filters-container button { color: #0A192F; } /* Specific text color for this theme's primary button */
+        .filters-container button:hover { opacity: 0.9; }
+        
+        .print-dashboard-btn {
+            padding: 8px 12px; background-color: #28a745; color: white;
+            border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em;
+        }
+        .print-dashboard-btn:hover { opacity: 0.9; }
+
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .metric-card {
+            background-color: var(--editor-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 20px; box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            display: flex; flex-direction: column; position: relative;
+        }
+        .metric-card.full-width { grid-column: 1 / -1; }
+        .metric-card h3 {
+            margin-top: 0; margin-bottom: 15px; font-size: 1.1em; color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color); padding-bottom: 8px; font-weight: 500;
+        }
+        .metric-card .value { font-size: 2em; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+        .metric-card .details { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; }
+        .metric-card .details div { margin-bottom: 5px; }
+        .metric-card .details span { font-weight: 500; color: var(--text-primary); margin-left: 6px; }
+        .metric-card small { font-size: 0.8em; color: var(--text-secondary); margin-top: auto; padding-top: 10px; }
+        
+        .print-element-btn {
+            position: absolute; top: 10px; right: 10px;
+            background: rgba(128,128,128,0.1); border: 1px solid var(--border-color);
+            color: var(--text-secondary); border-radius: 4px;
+            padding: 4px 6px; cursor: pointer; font-size: 0.9em; opacity: 0.7;
+        }
+        .print-element-btn:hover { opacity: 1; background: rgba(128,128,128,0.2); }
+        .print-element-btn svg { width: 14px; height: 14px; vertical-align: middle; stroke: currentColor; }
+
+        .chart-container { margin-top: 15px; position: relative; height: 300px; width: 100%; }
+        canvas { max-width: 100%; max-height: 100%; }
+        .chart-container text, .chart-container .tick text { fill: var(--text-secondary) !important; } /* For SVG based text in charts */
+        .chart-container .chartjs-legend-title, .chart-container .chartjs-axis-title { color: var(--text-secondary) !important; }
+
+
+        #dailyInsightsContainer h2 { margin-top: 30px; color: var(--text-primary); }
+        .daily-insight-card {
+            background-color: var(--editor-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 15px; margin-bottom: 15px;
+        }
+        .daily-insight-card h4 { margin-top: 0; color: var(--color-primary-01); }
+        .daily-insight-card p { font-size: 0.9em; margin: 5px 0; color: var(--text-secondary); }
+        .daily-insight-card p strong { color: var(--text-primary); }
+
+        .refresh-button, .download-button {
+            padding: 10px 15px; border-radius: 5px; border: 1px solid var(--color-primary-01);
+            background-color: var(--color-primary-01); color: var(--btn-primary-text, #fff);
+            cursor: pointer; font-size: 1em; margin-top: 20px; margin-right: 10px;
+        }
+        body.theme-authenticheck-dark .refresh-button, body.theme-authenticheck-dark .download-button { color: #0A192F; }
+        .refresh-button:hover, .download-button:hover { opacity: 0.9; }
+        
+        .chart-nav-controls { display: flex; align-items: center; gap: 8px; }
+        .chart-nav-btn {
+            padding: 5px 10px; font-size: 0.9em; background-color: var(--editor-bg);
+            border: 1px solid var(--border-color); color: var(--text-primary);
+            cursor: pointer; border-radius: 4px;
+        }
+        .chart-nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .chart-nav-btn:hover:not(:disabled) { background-color: var(--color-primary-01); color: var(--btn-primary-text, #fff); }
+         body.theme-authenticheck-dark .chart-nav-btn:hover:not(:disabled) { color: #0A192F; }
+
+
+        /* Analyzed Text Output Area */
+        #dashboardHighlightedText {
+            padding: 10px; line-height: 1.6; text-align: left;
+            background-color: var(--editor-bg); border: 1px solid var(--border-color);
+            border-radius: 4px; font-family: var(--font-family-monospace);
+            font-size: 14px; white-space: pre-wrap; word-break: break-word;
+            /* max-height: 300px; Removed for full display */
+            /* overflow-y: auto; Removed for full display */
+            max-height: none; /* Ensure it can grow indefinitely */
+            overflow-y: visible; /* Ensure no scrollbar appears and content is not clipped */
+            color: var(--text-primary);
+        }
+        #dashboardHighlightedText .segment-wrapper {
+            display: inline-block; position: relative;
+            margin: 20px 6px 5px 6px; /* Increased top margin for tooltip */
+            vertical-align: top;
+        }
+        #dashboardHighlightedText .segment-text-content {
+            display: block; padding: 4px 6px; border-radius: 3px;
+            font-size: 1em; line-height: 1.5; white-space: pre-wrap;
+            min-width: 20px; text-align: center; box-sizing: border-box;
+        }
+        #dashboardHighlightedText .segment-tooltip {
+            position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+            background-color: var(--editor-bg); color: var(--text-primary);
+            border: 1px solid var(--border-color); border-radius: 4px;
+            padding: 3px 7px; font-size: 0.75em; white-space: normal; /* Allow wrap */
+            max-width: 170px; min-width: 60px; word-break: break-word; text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); z-index: 10;
+            opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s;
+            margin-bottom: 5px;
+        }
+        #dashboardHighlightedText .segment-wrapper:hover .segment-tooltip { opacity: 1; visibility: visible; }
+
+        /* Highlight Styles for Analyzed Text */
+        .highlight-yellow-typed  { background-color: var(--highlight-yellow-bg); }
+        .highlight-red-pasted    { background-color: var(--highlight-red-bg); }
+        .highlight-green-corrected { background-color: var(--highlight-green-bg); }
+
+        /* Light Theme (Default text color for highlights) */
+        body.theme-light .highlight-yellow-typed,
+        body.theme-light .highlight-red-pasted,
+        body.theme-light .highlight-green-corrected { color: #000000; }
+
+        /* Dark Theme text color for highlights */
+        body.theme-dark .highlight-yellow-typed,
+        body.theme-dark .highlight-red-pasted,
+        body.theme-dark .highlight-green-corrected { color: var(--text-primary); }
+
+        /* Blue Neon text color for highlights */
+        body.theme-blue-neon .highlight-yellow-typed  { color: var(--color-warning); text-shadow: 0 0 2px var(--color-warning); }
+        body.theme-blue-neon .highlight-red-pasted    { color: var(--color-error);   text-shadow: 0 0 2px var(--color-error);   }
+        body.theme-blue-neon .highlight-green-corrected { color: var(--color-success); text-shadow: 0 0 2px var(--color-success); }
+        
+        /* AuthentiCheck Dark text color for highlights */
+        body.theme-authenticheck-dark .highlight-yellow-typed  { color: var(--color-warning); }
+        body.theme-authenticheck-dark .highlight-red-pasted    { color: var(--color-error);   }
+        body.theme-authenticheck-dark .highlight-green-corrected { color: var(--color-success); }
+
+        @media print {
+            body {
+                background-color: white !important; color: black !important;
+                margin: 20px; padding: 0; font-size: 10pt; font-family: Arial, sans-serif !important;
+            }
+            .dashboard-header, .filters-container, .refresh-button, .download-button, .print-dashboard-btn, .print-element-btn {
+                display: none !important;
+            }
+            .dashboard-grid, .daily-insight-card, .metric-card.full-width {
+                display: block !important; grid-template-columns: 1fr !important; width: 100% !important;
+            }
+            .metric-card, .daily-insight-card {
+                border: 1px solid #ccc !important; box-shadow: none !important;
+                page-break-inside: avoid !important; margin-bottom: 15px !important;
+                background-color: white !important;
+            }
+            .metric-card h3, .metric-card .value, .metric-card .details, .metric-card .details span, .metric-card small,
+            .daily-insight-card h4, .daily-insight-card p, .daily-insight-card p strong,
+            #dashboardHighlightedText .segment-text-content /* Ensure highlighted text itself is black */ {
+                color: black !important; text-shadow: none !important;
+            }
+            .chart-container { height: auto !important; width: 100% !important; page-break-inside: avoid !important; }
+            canvas { max-width: 100% !important; border: 1px solid #eee; }
+            h1, h2 { color: black !important; border-bottom: 1px solid #666 !important; }
+
+            #dashboardHighlightedText {
+                background-color: white !important; border: 1px solid #ccc !important;
+                color: black !important; /* Fallback for container text */
+                max-height: none !important; /* Allow full text in print */
+                overflow-y: visible !important; /* No scrollbar in print */
+            }
+            #dashboardHighlightedText .segment-wrapper { margin: 2px 4px !important; }
+            #dashboardHighlightedText .segment-text-content {
+                -webkit-print-color-adjust: exact !important; color-adjust: exact !important;
+            }
+            #dashboardHighlightedText .highlight-yellow-typed  { background-color: #fffacd !important; }
+            #dashboardHighlightedText .highlight-red-pasted    { background-color: #ffcccb !important; }
+            #dashboardHighlightedText .highlight-green-corrected { background-color: #90ee90 !important; }
+            #dashboardHighlightedText .segment-tooltip { display: none !important; }
+        }
+
+
+/* =========================================== */
+/* ===         MOBILE RESPONSIVE CSS         === */
+/* =========================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 10px; 
+    }
+
+    .logo{
+        display: none;
+    }
+
+    .dashboard-header {
+        flex-direction: column; /* Stack title and filters vertically */
+        align-items: flex-start; /* Align to the left */
+        gap: 15px; /* Add space between the title and the filters */
+    }
+
+    .filters-container {
+        flex-direction: column; /* Stack filter items vertically */
+        align-items: stretch; /* Make items take full width */
+        width: 100%; /* Ensure container takes full width */
+    }
+
+    .filters-container button {
+        width: 100%; /* Make buttons full-width for easier tapping */
+    }
+
+    /* --- 3. Adjust Font Sizes for Readability --- */
+    .dashboard-header h1 {
+        font-size: 1.5em; /* Slightly smaller title */
+    }
+
+    .metric-card .value {
+        font-size: 1.8em; /* Make the large numbers a bit smaller */
+    }
+    body {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    /* --- 2. Fix Header and Filters --- */
+    .dashboard-header {
+        flex-direction: column; /* Stack title and filters vertically */
+        align-items: flex-start; /* Align to the left */
+        gap: 15px; /* Add space between the title and the filters */
+    }
+
+    .filters-container {
+        flex-direction: column; /* Stack filter items vertically */
+        align-items: stretch; /* Make items take full width */
+        width: 100%; /* Ensure container takes full width */
+    }
+
+
+    .dashboard-grid {
+        /* The auto-fit grid will handle this, but you could reduce the min-width if needed */
+        /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+    }
+
+  .logo {
+        display: none !important;
+    }
+    /* --- 4. Usability Fix for Analyzed Text Tooltips --- */
+    /* On touch devices, :hover doesn't work. We make the tooltips always visible. */
+    #dashboardHighlightedText .segment-tooltip {
+        position: relative; /* Change from absolute to relative */
+        transform: none;    /* Reset transforms */
+        left: auto;
+        bottom: auto;
+        
+        opacity: 1;         /* Make it visible */
+        visibility: visible;
+        
+        margin-top: 5px;   /* Add space above the tooltip content */
+        margin-bottom: 0;
+        font-size: 0.8em;
+        text-align: left;  /* Align text left for better block reading */
+        max-width: 100%;   /* Allow it to take full width of the wrapper */
+        box-shadow: none;  /* Remove shadow for a cleaner look in the flow */
+    }
+    
+    #dashboardHighlightedText .segment-wrapper {
+        display: block; /* Stack each segment vertically for clarity */
+        margin: 15px 5px;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1>User Behavior Dashboard</h1>
+        <div class="filters-container">
+            <label for="filterStartDate">From:</label>
+            <input type="date" id="filterStartDate">
+            <label for="filterEndDate">To:</label>
+            <input type="date" id="filterEndDate">
+            <button id="applyFilterBtn">Apply Filter</button>
+            <button id="resetFilterBtn">Reset Filter</button>
+            <button class="print-dashboard-btn" id="printDashboardBtn">Print Dashboard</button>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="metric-card">
+            </button>
+            <h3>Essay Writing Analytics (JS Editor)</h3>
+            <div class="details">
+                <div>Total Words (Current): <span id="essayTotalWords">--</span></div>
+                <div>Total Chars (Current): <span id="essayTotalChars">--</span></div>
+                <div style="margin-top: 8px; border-top: 1px solid var(--border-color); padding-top: 8px;">Typed Words (Filtered): <span id="essayTypedWords">0</span></div>
+                <div>Pasted Words (Filtered): <span id="essayPastedWords">0</span></div>
+                <div>Typed Chars (Filtered): <span id="essayTypedChars">0</span></div>
+                <div>Pasted Chars (Filtered): <span id="essayPastedChars">0</span></div>
+                <div style="margin-top: 8px; border-top: 1px solid var(--border-color); padding-top: 8px;">Paste Ratio (Words, Filtered): <span id="essayPasteRatioWords">--</span>%</div>
+                <div>Paste Ratio (Chars, Filtered): <span id="essayPasteRatioChars">--</span>%</div>
+                <div style="margin-top: 5px;">Paste Actions (Filtered): <span id="essayPasteEventsCount">0</span></div>
+                <div>Editor Interactions (Filtered): <span id="essayTotalEdits">0</span></div>
+                 <div style="margin-top: 8px; border-top: 1px solid var(--border-color); padding-top: 8px;">Avg. Typing Speed (Filtered): <span id="essayTypingSpeed">--</span> WPM</div>
+                <div>Backspace Presses (Filtered): <span id="essayBackspaceCount">0</span></div>
+                <div>Delete Presses (Filtered): <span id="essayDeleteCount">0</span></div>
+            </div>
+            <small>Analysis of JS editor content</small>
+        </div>
+      
+    </div>
+
+ 
+
+    <button class="refresh-button" id="refreshData">Refresh Data</button>
+    <button class="download-button" style="display: none;" id="downloadReport">Download Report (CSV)</button> 
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuthentiCheck | Deep Writing Analysis | ImagineASTORE</title> 
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <meta name="description" content="AuthentiCheck by ImagineASTORE goes beyond surface-level checks. We analyze writing patterns, sources, and AI indicators to ensure true academic originality.">
+     <meta name="robots" content="index, follow">
+     <link rel="canonical" href="https://imaginea.store/authenticheck/" />
+     <meta property="og:title" content="AuthentiCheck | Deep Writing Analysis | ImagineASTORE" />
+     <meta property="og:description" content="Uncover the true origin of every assignment. AuthentiCheck analyzes writing patterns, sources, and AI indicators." />
+     <meta property="og:type" content="website" />
+     <meta property="og:url" content="https://imaginea.store/authenticheck/" />
+     <meta property="og:image" content="https://imaginea.store/images/authenticheck-deep-analysis-social.jpg" />
+     <meta property="og:site_name" content="ImagineASTORE" />
+     <meta name="twitter:card" content="summary_large_image" />
+     <meta name="twitter:title" content="AuthentiCheck | Deep Writing Analysis" />
+     <meta name="twitter:description" content="Uncover the true origin of every assignment with deep writing analysis." />
+     <meta name="twitter:image" content="https://imaginea.store/images/authenticheck-deep-analysis-social.jpg" />
+     <meta name="twitter:site" content="@YourImagineaStoreTwitterHandle">
+     <link rel="icon" href="/favicon.ico" sizes="any">
+     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+     <link rel="manifest" href="/site.webmanifest">
+
+     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            overflow-x: hidden;
+            background-color: #0A192F; /* Deep Blue */
+            color: #ccd6f6; /* Light text */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+            z-index: 4;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #64ffda;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #8892b0;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+            line-height: 1.7;
+        }
+
+        /* --- Landing Section --- */
+        #landing-section {
+            min-height: 100vh; /* Use min-height to ensure it fills screen but can grow */
+            width: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            background-color: #07111f; position: relative; 
+            z-index: 5;
+            padding: 40px 20px; /* Add more padding for content */
+        }
+        #landing-section h1 { font-size: 2.8rem; margin-bottom: 20px; color: #64ffda; line-height: 1.2; max-width: 800px;} /* Slightly smaller, wider max */
+        #landing-section p { font-size: 1.2rem; max-width: 650px; margin-bottom: 30px; line-height: 1.7; color: #a8b2d1; }
+        #landing-section .hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+        /* Removed scroll-down indicator as complex animation section is gone */
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr; /* Give a bit more space to text */
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px; /* Slightly wider for impact */
+        }
+        .hero-text {
+            text-align: left;
+        }
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-image svg {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px; /* Control SVG height */
+            filter: drop-shadow(0 0 15px rgba(100, 255, 218, 0.2)); /* Add subtle glow to SVG */
+        }
+
+        @media (max-width: 940px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-text {
+                text-align: center;
+                order: 2;
+            }
+            .hero-image {
+                order: 1;
+                margin-bottom: 40px;
+            }
+            #landing-section h1 { font-size: 2.4rem; }
+            #landing-section p { font-size: 1.1rem; }
+        }
+
+
+        /* Features Section (using existing style, icons updated) */
+        .features { background-color: #0d1b2f; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background-color: #112240;
+            padding: 35px 30px;
+            border-radius: 8px;
+            border: 1px solid #1d3150;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left; /* Align text left for feature cards */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align icon and text to the start */
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .feature-card .icon { /* Font Awesome icon */
+            font-size: 2.2rem; /* Adjusted icon size */
+            color: #64ffda;
+            margin-bottom: 15px; /* Space below icon */
+            width: 42px; 
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(100, 255, 218, 0.1); /* Subtle background for icon */
+            border-radius: 6px;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem; 
+            color: #ccd6f6;
+            margin-bottom: 8px;
+            font-weight: 600; /* Bolder feature titles */
+        }
+        .feature-card p {
+            font-size: 0.9rem; 
+            color: #8892b0;
+            line-height: 1.6;
+        }
+
+        /* Workflow Section */
+        .workflow { background-color: #0A192F; }
+        .workflow-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .step-card {
+            background-color: #112240;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #1d3150;
+            text-align: center; /* Keep workflow steps centered */
+            flex-basis: calc(33.333% - 20px);
+            min-width: 250px;
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        .step-icon {
+            font-size: 2.5rem;
+            color: #64ffda;
+            margin-bottom: 15px;
+        }
+        .step-card h3 {
+            font-size: 1.3rem;
+            color: #ccd6f6;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .step-card p {
+            font-size: 0.95rem;
+            color: #8892b0;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* Testimonials Section */
+        .testimonials { background-color: #0d1b2f; }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background-color: #112240;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #64ffda;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: #a8b2d1;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .testimonial-text::before {
+            content: '“';
+            font-size: 2rem;
+            color: #64ffda;
+            position: relative;
+            top: 5px;
+            margin-right: 5px;
+            line-height: 0;
+        }
+        .testimonial-author { display: flex; align-items: center; }
+        .author-avatar { margin-right: 15px; }
+        .author-avatar .fa-solid, .author-avatar .fa-user-tie, .author-avatar .fa-user-graduate {
+            font-size: 2.5rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: #64ffda;
+            background-color: #1d3150;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .author-name { font-weight: 600; color: #ccd6f6; font-size: 1rem; }
+        .author-role { font-size: 0.85rem; color: #8892b0; }
+
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url('https://via.placeholder.com/1500x500/112240/0A192F?text=Secure+Data+BG') center/cover no-repeat;
+            text-align: center;
+            padding: 100px 0;
+        }
+        .cta h2 { font-size: 2.2rem; color: #fff; margin-bottom: 15px; }
+        .cta p { font-size: 1.1rem; color: #a8b2d1; max-width: 650px; margin: 0 auto 30px; }
+        .cta-button {
+            display: inline-block;
+            background-color: #64ffda;
+            color: #0A192F;
+            padding: 14px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+            border: 1px solid #64ffda;
+        }
+        .cta-button:hover {
+            background-color: transparent;
+            color: #64ffda;
+            transform: translateY(-3px);
+        }
+
+        /* Footer (styles largely reused) */
+        footer { background-color: #07111f; padding: 60px 0 30px; color: #8892b0; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-logo { font-size: 1.5rem; font-weight: 700; color: #ccd6f6; text-decoration: none; margin-bottom: 15px; display: inline-block; }
+        .footer-logo span { color: #64ffda; }
+        .footer-about { margin-bottom: 20px; line-height: 1.7; }
+        .footer-social { display: flex; gap: 15px; }
+        .social-icon { color: #a8b2d1; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
+        .social-icon svg { width: 20px; height: 20px; }
+        .social-icon:hover { color: #64ffda; transform: translateY(-2px); }
+        .footer-heading { font-size: 1.1rem; color: #ccd6f6; margin-bottom: 15px; font-weight: 500; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #8892b0; text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: #64ffda; }
+        .footer-subscribe { margin-bottom: 40px; border-top: 1px solid #1d3150; padding-top: 30px;}
+        .subscribe-form { display: flex; margin-bottom: 10px; max-width: 400px;}
+        .subscribe-form input[type="email"] { flex-grow: 1; padding: 10px 15px; border: 1px solid #1d3150; background-color: #0A192F; color: #ccd6f6; border-radius: 4px 0 0 4px; outline: none; }
+        .subscribe-form button { padding: 10px 15px; background-color: #64ffda; color: #0A192F; border: none; border-radius: 0 4px 4px 0; font-weight: 600; cursor: pointer; transition: background-color 0.3s ease; }
+        .subscribe-form button:hover { background-color: #52c4b3; }
+        .subscribe-text { font-size: 0.85rem; color: #8892b0; }
+        .footer-bottom { border-top: 1px solid #1d3150; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; }
+        .footer-bottom-links a { color: #8892b0; text-decoration: none; margin-left: 15px; transition: color 0.3s ease; }
+        .footer-bottom-links a:hover { color: #64ffda; }
+
+        /* Animation Placeholders */
+        .animate-on-scroll { opacity: 0.99; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        .stagger-children > * { opacity: 0.99; transform: translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+        .stagger-children.is-visible > * { opacity: 1; transform: translateY(0); }
+
+        /* Header, Button, Mobile Menu Styles (Reused from original AuthentiCheck CSS) */
+        :root{--space-3xs: clamp(.25rem, .2411rem + .0446vi, .3125rem);--space-2xs: clamp(.5rem, .4821rem + .0893vi, .625rem);--space-xs: clamp(.75rem, .7232rem + .1339vi, .9375rem);--space-s: clamp(1rem, .9643rem + .1786vi, 1.25rem);--space-m: clamp(1.5rem, 1.4464rem + .2679vi, 1.875rem);--space-l: clamp(2rem, 1.9286rem + .3571vi, 2.5rem);--space-xl: clamp(3rem, 2.8929rem + .5357vi, 3.75rem);--space-2xl: clamp(4rem, 3.8571rem + .7143vi, 5rem);
+        --body-background-color: #0A192F; --body-text-color: #ccd6f6;
+        --font-family-heading: 'Inter', "neue-haas-grotesk-display", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        --font-family-body: 'Inter', "neue-haas-grotesk-text", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        --color-white: #f6f6f6; --color-primary-01: #4991e5; --color-primary-02: #39bdd6; --color-primary-03: #3bd4cb; --color-primary-04: #BAD7F5;
+        --container-padding: 20px; --fast-start-easing: cubic-bezier(.17, .67, .1, .99);--faster-start-easing: cubic-bezier(.19, 1, .22, 1);--slow-start-easing: cubic-bezier(.73, 0, 0, 1);
+        --fluid-16-18: calc(clamp(1rem, .9697rem + .1294vw, 1.125rem)); --body-font-size: var(--fluid-16-18);
+        --h1: calc(clamp(2.25rem, 1.5825rem + 2.8479vw, 3.5rem)); --h2: calc(clamp(1.375rem, 1.1019rem + 1.165vw, 2.8rem)); --h3: calc(clamp(1.25rem, 1.0983rem + .6472vw, 2.2rem)); --h4: calc(clamp(1.125rem, .943rem + .7767vw, 1.875rem)); --h5: calc(clamp(1rem, .909rem + .3883vw, 1.375rem));
+        --btn1: var(--fluid-16-18); --link-header-internal: 16px;
+        }
+        @media (min-width: 940px){:root{--container-padding: 3vw}}
+        h1,h2,h3,h4,h5,h6{font-family:var(--font-family-heading), sans-serif; font-weight:600;line-height:calc(1.2em + 4px)}
+        h1 { font-size: var(--h1); } h2 { font-size: var(--h2); } h3 { font-size: var(--h3); } h4 { font-size: var(--h4); } h5 { font-size: var(--h5); }
+
+        #site-header { position: fixed; top: 0; left: 0; width: 100%; padding: var(--space-s) var(--container-padding); background-color: rgba(10, 25, 47, 0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease; display: flex; justify-content: space-between; align-items: center; }
+        #site-header.scrolled { background-color: rgba(10, 25, 47, 0.95); padding-top: var(--space-xs); padding-bottom: var(--space-xs); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .logo { font-size: var(--h4); font-weight: 700; color: var(--color-white); text-decoration: none; transition: transform 0.3s ease; }
+        .logo:hover { transform: scale(1.03); }
+        .logo span { color: var(--color-primary-02); }
+        .nav-links { display: flex; gap: var(--space-l); align-items: center; }
+        .nav-links a:not(.button-primary):not(.button-secondary) { color: var(--color-white); text-decoration: none; font-size: var(--link-header-internal); position: relative; padding-bottom: 5px; transition: color 0.3s ease, transform 0.3s ease; }
+        .nav-links a:not(.button-primary):not(.button-secondary)::after { content: ''; position: absolute; width: 0; height: 2px; display: block; margin-top: 3px; right: 0; background: var(--color-primary-02); transition: width 0.3s ease; bottom: 0; }
+        .nav-links a:not(.button-primary):not(.button-secondary):hover::after { width: 100%; left: 0; }
+        .nav-links a:not(.button-primary):not(.button-secondary):hover { color: var(--color-primary-02); transform: translateY(-2px); }
+        .button-primary, .button-secondary { padding: var(--space-xs) var(--space-m); border-radius: 6px; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; font-size: var(--btn1); text-decoration: none; border: 1px solid transparent; cursor: pointer; line-height: 1.2; }
+        .button-primary { background: linear-gradient(90deg, var(--color-primary-01), var(--color-primary-02)); color: var(--color-white) !important; border-color: var(--color-primary-02); box-shadow: 0 4px 15px rgba(57, 189, 214, 0.2); }
+        .button-primary:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 6px 20px rgba(57, 189, 214, 0.4); background: linear-gradient(90deg, var(--color-primary-02), var(--color-primary-01)); }
+        .button-secondary { background-color: transparent; border: 1px solid var(--color-primary-01); color: var(--color-white); }
+        .button-secondary:hover { background-color: rgba(73, 145, 229, 0.2); transform: scale(1.05) translateY(-2px); box-shadow: 0 4px 15px rgba(73, 145, 229, 0.15); }
+        .mobile-menu-toggle { display: none; font-size: var(--h3); cursor: pointer; background: none; border: none; color: var(--color-white); padding: var(--space-xs); z-index: 101; transition: transform 0.3s ease, color 0.3s ease; line-height: 1; }
+        .mobile-menu-toggle:hover { transform: scale(1.1); color: var(--color-primary-02); }
+        @media (max-width: 768px) {
+            .mobile-menu-toggle { display: block; }
+            .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(10, 25, 47, 0.98); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-direction: column; align-items: center; justify-content: center; transform: translateX(100%); opacity: 0; visibility: hidden; transition: transform 0.4s var(--faster-start-easing), opacity 0.4s var(--faster-start-easing), visibility 0s 0.4s; z-index: 99; gap: var(--space-xl); }
+            .nav-links.active { transform: translateX(0); opacity: 1; visibility: visible; transition-delay: 0s, 0s, 0s; }
+            .nav-links a { font-size: var(--h4) !important; }
+            .nav-links a::after { display: none; }
+            .nav-links .button-primary, .nav-links .button-secondary { padding: var(--space-m) var(--space-l); font-size: var(--h5); width: 80%; text-align: center; }
+            .nav-links .beta-signup { flex-direction: column; width: 80%; align-items: stretch; }
+            .nav-links .beta-input { width: 100% !important; }
+            .nav-links .beta-button { width: 100% !important; text-align: center; }
+        }
+        .beta-signup { display: flex; align-items: center; gap: var(--space-xs); position: relative; }
+        .beta-input { width: 0; opacity: 0; padding: 0; border: none; background:  rgba(255,255,255,0.1); color: var(--color-white); border-radius: 4px; font-size: var(--body2); transition: all 0.3s var(--fast-start-easing); transform: translateX(10px); position: absolute; right: 100%; height: calc(var(--space-xs) * 2 + 2px); }
+        .beta-signup:hover .beta-input, .beta-signup.active .beta-input { width: 180px; opacity: 1; padding: var(--space-3xs) var(--space-xs); transform: translateX(0); border: 1px solid rgba(57, 189, 214, 0.3); }
+        .beta-button { white-space: nowrap; }
+
+        /* Pricing Section (reused from previous AuthentiCheck example) */
+        #pricing-section { background-color: #0A192F; }
+        .pricing-cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .pricing-card { background-color: #112240; border: 1px solid #1d3150; border-radius: 8px; padding: 30px 25px; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .pricing-card.featured { border-color: #64ffda; box-shadow: 0 0 20px rgba(100, 255, 218, 0.2); transform: scale(1.03); position: relative; }
+        .pricing-card.featured::before { content: 'Most Popular'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background-color: #64ffda; color: #0A192F; padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+        .pricing-card h3 { font-size: 1.4rem; color: #ccd6f6; margin-bottom: 8px; text-align: center; }
+        .pricing-card .plan-description { font-size: 0.9rem; color: #8892b0; text-align: center; margin-bottom: 20px; min-height: 2.5em; }
+        .price-container { margin-bottom: 25px; text-align: center; border-bottom: 1px solid #1d3150; padding-bottom: 25px; }
+        .price-amount { font-size: 2.8rem; font-weight: 600; color: #ffffff; }
+        .price-unit { font-size: 0.9rem; color: #8892b0; margin-left: 5px; }
+        .features-list { list-style: none; padding: 0; margin: 0 0 25px 0; flex-grow: 1; }
+        .features-list li { color: #a8b2d1; font-size: 0.95rem; margin-bottom: 12px; display: flex; align-items: flex-start; }
+        .features-list li::before { content: '✓'; color: #64ffda; font-weight: bold; margin-right: 10px; font-size: 1.1em; line-height: 1.4; }
+        .pricing-card .cta-button { display: block; width: 100%; text-align: center; margin-top: auto; padding: 12px 20px; font-size: 1rem; }
+        .pricing-card.enterprise .cta-button { background-color: transparent; color: #64ffda; border: 1px solid #64ffda; }
+        .pricing-card.enterprise .cta-button:hover { background-color: #64ffda; color: #0A192F; }
+        .pricing-footnote { text-align: center; margin-top: 40px; font-size: 0.85rem; color: #8892b0; line-height: 1.6; }
+        @media (max-width: 768px) { #pricing-section h2 { font-size: 1.8rem; } .pricing-cards-container { grid-template-columns: 1fr; } }
+
+        /* BG Animation SVG (reused, reduced opacity further) */
+        .bg-animation { position: fixed; top: 0; left: 0; z-index: 109;  pointer-events: none; width:100%; height:100%;}
+
+/* --- Mobile Specific Styles --- */
+@media (max-width: 767px) {
+    #landing-section {
+        min-height: auto;
+        padding-top: 70px; /* Adjust if header height changes */
+        padding-bottom: 30px; /* Less bottom padding on mobile */
+    }
+
+    /* Styles for the preview section when it's rendered on mobile
+       (assuming it's mostly static or the .is-settled state is what matters most) */
+    #play-preview-section.is-mobile-preview { /* This class is added by JS */
+        padding: 30px 0; /* Reduced vertical padding for mobile */
+    }
+
+    #play-preview-section.is-mobile-preview .preview-visit-now-text {
+        font-size: clamp(1.4rem, 4vw, 1.8rem) !important; /* Responsive font size */
+        top: 10px !important; /* Closer to top */
+        /* Ensure it doesn't get too wide */
+        max-width: 90%;
+        text-align: center; /* Center the text itself if it wraps */
+    }
+    #play-preview-section.is-mobile-preview .preview-visit-now-text::after {
+        display: inline-block;
+        font-size: 0.7em;
+    }
+
+    #play-preview-section.is-mobile-preview .section-title {
+        font-size: clamp(1.5rem, 5vw, 1.8rem) !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    #play-preview-section.is-mobile-preview .section-subtitle {
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+        max-width: 90% !important;
+        margin-bottom: 1.2rem !important;
+    }
+
+    #play-preview-section.is-mobile-preview #play-html-preview-wrapper {
+        /* CRITICAL FOR LANDSCAPE: Adjust height carefully */
+        height: 50vh !important; /* Start with a viewport height percentage */
+        /* Provide min/max in pixels that make sense for typical landscape aspect ratios */
+        min-height: 200px !important; /* Absolute minimum */
+        max-height: 300px !important; /* Don't let it get too tall in portrait */
+        border-radius: 8px !important;
+    }
+
+    /* --- Specific adjustments for LANDSCAPE orientation within mobile breakpoint --- */
+    @media (orientation: landscape) {
+        #landing-section .hero-content {
+            /* In landscape, hero text and image might fit side-by-side better if font is smaller */
+            gap: 20px; /* Reduce gap */
+        }
+        #landing-section .hero-text h1 {
+            font-size: clamp(1.8rem, 5vw, 2.2rem); /* Adjust hero title for landscape */
+        }
+        #landing-section .hero-text p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem); /* Adjust hero p for landscape */
+        }
+
+
+        #play-preview-section.is-mobile-preview {
+            padding: 20px 0; /* Even less vertical padding in landscape */
+        }
+
+        #play-preview-section.is-mobile-preview .preview-visit-now-text {
+            font-size: clamp(1.2rem, 3.5vw, 1.5rem) !important;
+        }
+
+        #play-preview-section.is-mobile-preview .section-title {
+            font-size: clamp(1.3rem, 4vw, 1.6rem) !important;
+        }
+        #play-preview-section.is-mobile-preview .section-subtitle {
+            font-size: clamp(0.75rem, 2.2vw, 0.85rem) !important;
+            margin-bottom: 1rem !important;
+        }
+
+        #play-preview-section.is-mobile-preview #play-html-preview-wrapper {
+            height: 65vh !important; /* Can often be TALLER in vh units for landscape */
+                                     /* because 1vh is a smaller absolute unit in landscape */
+            max-height: 280px !important; /* BUT, cap its absolute max height */
+            min-height: 180px !important;
+        }
+    }
+
+    /* If you ARE keeping the fixed animation for mobile (is-animating state) */
+    #play-preview-section.is-animating.is-mobile-preview {
+        border-width: 1.5px !important;
+        /* JS should be setting a very small initial scale and appropriate top/left for mobile.
+           The padding and font sizes inside would need to be tiny or hidden initially. */
+    }
+    #play-preview-section.is-animating.is-mobile-preview .preview-visit-now-text,
+    #play-preview-section.is-animating.is-mobile-preview .section-title,
+    #play-preview-section.is-animating.is-mobile-preview .section-subtitle {
+        /* JS would typically control their font-size and opacity during animation.
+           You might set base very small font-sizes here. e.g., font-size: 0.5rem; */
+        /* Or even display: none; initially, and JS fades them in. */
+    }
+    #play-preview-section.is-animating.is-mobile-preview #play-html-preview-wrapper {
+        border-radius: 6px;
+        /* Height, opacity, transform are mostly JS controlled here */
+    }
+}
+        
+
+@keyframes rotateSparkles {
+    to {
+        --sparkle-angle: 360deg;
+    }
+}
+
+@keyframes shimmerEffect {
+    0% { filter: brightness(0.8) saturate(1); }
+    50% { filter: brightness(1.5) saturate(1.3); } /* Brighter and more saturated */
+    100% { filter: brightness(0.8) saturate(1); }
+}
+
+
+
+#play-preview-section::before {
+    background: radial-gradient(ellipse at center,
+        rgba(100, 255, 218, 0.5) 0%,  /* Teal center */
+        rgba(73, 145, 229, 0.4) 50%,  /* Blue mid */
+        rgba(59, 212, 203, 0.3) 70%,  /* Cyan outer */
+        transparent 90%              /* Fade to transparent */
+    );
+    filter: blur(5px); /* Soften the glow */
+    animation: pulseAura 3s infinite alternate ease-in-out;
+
+    /* Mask to make it appear only as a border */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: var(--border-anim-thickness); /* Defines the border thickness for the mask */
+}
+
+#play-preview-section.is-animating:hover {
+    border-color: rgba(100, 255, 218, 1) !important; /* Brighter border on hover */
+    box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3) !important; /* More pronounced shadow on hover */
+    /* The JS controlled transform:scale() from initial values will still apply.
+       If you want hover to further scale, you'd need JS to handle that or accept fixed transform overrides */
+}
+
+        #play-preview-section.is-animating .section-title {
+            font-size: 1.2rem; /* Smaller when preview is small */
+            margin-bottom: 0.5rem;
+            opacity: 0; /* Will be faded in by JS */
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, font-size 0.3s ease-out;
+        }
+
+        #play-preview-section.is-animating .section-subtitle {
+            font-size: 0.7rem; /* Smaller when preview is small */
+            max-width: 90%;
+            margin-bottom: 1rem;
+            opacity: 0; /* Will be faded in by JS */
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, font-size 0.3s ease-out, max-width 0.3s ease-out;
+        }
+        #play-preview-section.is-animating {
+            border-color: rgba(100, 255, 218, 0.7) !important; /* Visible, rounded teal border */
+    border-image: none !important; /* No complex image border when small */
+    box-shadow: 0 5px 20px rgba(100, 255, 218, 0.15); /* Softer glow */
+}
+
+        #play-preview-section.is-animating #play-html-preview-wrapper {
+            width: 100%; /* Take full width of scaled parent */
+            height: 60%; /* Adjust height within scaled parent */
+            max-width: none;
+            background: #0E2A47;
+            max-height: none;
+            border-radius: 12px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+
+            opacity: 0; /* Will be faded in by JS */
+            transform: scale(0.95); /* Slightly smaller to fit padding */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, height 0.3s ease-out, border-radius 0.3s ease-out;
+        }
+        
+        #play-preview-section.is-settled {
+            position: relative !important; /* Override JS fixed positioning */
+            width: auto !important; /* Let .section class or content define width */
+            height: auto !important; /* Let content define height */
+            top: auto !important;
+            left: auto !important;
+            transform: none !important; /* Reset transform */
+            opacity: 1 !important; /* Ensure full opacity */
+            border-radius: 12px !important; /* No rounded corners */
+            padding: 80px 0 !important; /* Restore original section padding */
+            box-shadow: none !important; /* Remove initial shadow */
+            background-color: #0A192F !important; /* Ensure final background */
+        }
+
+        #play-preview-section.is-settled .section-title,
+        #play-preview-section.is-settled .section-subtitle,
+        #play-preview-section.is-settled #play-html-preview-wrapper {
+            opacity: 1 !important;
+            transform: none !important;
+            font-size: "" !important; /* Reset to allow CSS class-defined styles */
+            max-width: "" !important;
+            height: "" !important; /* Reset height for wrapper */
+            border-radius: "" !important; /* Reset border-radius for wrapper */
+             /* Ensure original styles are reapplied by removing inline styles */
+            background: #000; /* Or final background for the iframe */
+            border-radius: 12px !important;
+            box-shadow: none !important; /* Remove inner shadow */
+            
+            }
+
+        #play-preview-section.is-settled .section-title { font-size: 2.5rem !important; margin-bottom: 1rem !important;}
+        #play-preview-section.is-settled .section-subtitle { font-size: 1.125rem !important; max-width: 600px !important; margin-bottom: 3.5rem !important;}
+        #play-preview-section.is-settled #play-html-preview-wrapper {
+            height: 75vh !important; /* Or your desired final height */
+            min-height: 500px !important;
+            max-height: 700px !important;
+            border-radius: 12px !important;
+            margin-top: 2rem !important;
+        }
+
+
+        #play-html-preview-wrapper {
+            position: relative; /* Crucial for positioning the overlay */
+            width: 100%;
+            height: 75vh; /* Let's make it a bit shorter for general screens */
+            min-height: 500px; /* Ensure it's usable on smaller viewports */
+            max-height: 700px; /* Cap the height */
+            border-radius: 12px;
+            margin-top: 2rem; /* Space below subtitle */
+            overflow: hidden; /* Ensures iframe is clipped to these bounds */
+            background-color: #000; /* Add a temp background to see it */
+            transition: transform 0.3s ease, box-shadow 0.3s ease,
+                        width 0.3s ease-out, height 0.3s ease-out; /* Add width/height transition for .is-settled */
+        }
+
+        #play-html-preview-wrapper:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.15);
+        }
+
+        #play-html-preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* Remove default iframe border */
+        }
+
+        #play-html-preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent; /* Makes it invisible */
+            z-index: 10; /* Ensures it's above the iframe content */
+            cursor: pointer; /* Indicates it's clickable */
+        }
+
+        #play-preview-section-placeholder {
+            height: 100vh; 
+            position: relative;
+            z-index: 0; 
+        }
+
+
+
+#play-preview-section .container {
+    position: relative;
+    z-index: 1; /* Content on top */
+}
+
+        #play-preview-section:hover .rimlight-hover-effect {
+    opacity: 0.9; /* Make it quite visible on hover */
+}
+
+
+
+        .rimlight-hover-effect::before,
+        .rimlight-hover-effect::after {
+            content: "";
+            position: absolute;
+            /* These negative offsets and calc for width/height make the gradient source larger
+            than the parent, allowing the mask to 'cut out' a border shape. */
+            left: calc(-1 * var(--border-thickness) * 2); /* Make it larger to allow for blur and sharp line */
+            top: calc(-1 * var(--border-thickness) * 2);
+            width: calc(100% + 4 * var(--border-thickness));
+            height: calc(100% + 4 * var(--border-thickness));
+            /* The parent #play-preview-section has overflow:hidden and its border-radius is set by JS.
+            This child will be clipped by the parent, effectively taking its shape. */
+            background-image: conic-gradient(
+                from var(--rim-angle),
+                rgba(100, 255, 218, 0) 0%,    /* Teal, transparent start */
+                rgba(100, 255, 218, 0.9) 10%, /* Teal, strong */
+                rgba(73, 145, 229, 0.8) 30%,  /* Blue */
+                rgba(59, 212, 203, 0.9) 50%,  /* Cyan */
+                rgba(73, 145, 229, 0.8) 70%,
+                rgba(100, 255, 218, 0.9) 90%,
+                rgba(100, 255, 218, 0) 100%   /* Teal, transparent end */
+            );
+            animation: rotateRim 5s linear infinite;
+            /* Mask to create the border effect */
+            /* This creates a "hole" in the middle, leaving the edges visible */
+            -webkit-mask-image: radial-gradient(ellipse at center, transparent calc(100% - var(--border-thickness) * 2.5), white calc(100% - var(--border-thickness) * 1.5));
+            mask-image: radial-gradient(ellipse at center, transparent calc(100% - var(--border-thickness) * 2.5), white calc(100% - var(--border-thickness) * 1.5));
+
+        }
+
+.rimlight-hover-effect::before { /* This will be the animated gradient border */
+    content: "";
+    position: absolute;
+    /* Inset the pseudo-element by half its border thickness to center the border */
+    /* This makes it appear AS the border of the parent */
+    top: calc(-1 * var(--border-thickness));
+    left: calc(-1 * var(--border-thickness));
+    right: calc(-1 * var(--border-thickness));
+    bottom: calc(-1 * var(--border-thickness));
+    border-radius: inherit; /* Inherit border-radius from .rimlight-hover-effect, which inherits from #play-preview-section */
+    /* Gradient background that will be masked */
+    background: conic-gradient(
+        from var(--rim-angle),
+        rgba(100, 255, 218, 0) 0%, /* Teal, transparent start */
+        rgba(100, 255, 218, 0.9) 15%, /* Teal, strong */
+        rgba(73, 145, 229, 0.8) 40%,  /* Blue */
+        rgba(59, 212, 203, 0.9) 60%,  /* Cyan */
+        rgba(73, 145, 229, 0.8) 80%,
+        rgba(100, 255, 218, 0.9) 95%,
+        rgba(100, 255, 218, 0) 100%   /* Teal, transparent end */
+    );
+    
+    /* Animation for the gradient */
+    animation: rotateRim 4s linear infinite;
+    
+    /* Mask to create the border effect:
+       - The outer part is transparent (where the gradient shows through)
+       - The inner part is opaque white (masking the gradient, making it look like a border)
+    */
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; /* For Safari/Chrome */
+            mask-composite: exclude; /* Standard */
+    
+    /* Define the padding for the mask, which corresponds to the border thickness */
+    padding: var(--border-thickness);
+}
+
+
+/* .rimlight-hover-effect::after is the sharper inner layer (no extra filter) */
+
+@keyframes rotateRim {
+    0% { --rim-angle: 0deg; }
+    100% { --rim-angle: 360deg; }
+}
+#play-preview-section {
+    z-index: 100;
+    overflow: hidden;
+    background-color: #07111f; /* Initial background, JS might change this */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border-radius will be set by JS initially, then by .is-settled or cleared */
+    /* padding will be set by JS initially, then by .is-settled */
+    /* box-shadow will be set by JS initially, then by .is-settled or cleared */
+    transition:
+        border-radius 0.3s ease-out, /* For snapping to settled */
+        padding 0.3s ease-out,       /* For snapping to settled */
+        box-shadow 0.3s ease-out,
+        background-color 0.3s ease-out,
+        border-color 0.3s ease-out,  /* Transition for border color change */
+        transform 0.3s ease-out;     /* For hover effect */
+    will-change: opacity, transform, width, height, top, left, border-radius, padding, border-color, box-shadow;
+    position: relative; /* Base position, JS changes to 'fixed' */
+    border: 2px solid #39bdd6; /* Base transparent border, becomes visible in .is-animating */
+}
+
+
+
+
+        .preview-visit-now-text {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6.5rem; /* Adjust as needed */
+    font-weight: bold;
+    z-index: 10; /* Ensure it's above other content within the section */
+
+    /* Gradient text effect */
+    background: linear-gradient(90deg, var(--color-primary-01, #4991e5), var(--color-primary-02, #39bdd6), var(--color-primary-03, #3bd4cb));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent; /* Standard property */
+    
+    /* Optional: Add a slight text shadow for better visibility if needed */
+    /* text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
+
+    /* Ensure it's not affected by parent's animations initially if desired */
+    /* If it should also animate with the parent, remove these */
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important; /* Override parent's initial transform for this specific element if needed */
+}
+
+
+#play-preview-section.is-animating .preview-visit-now-text {
+    /* If you want it to fade/move with the parent, remove opacity/transform overrides above */
+    /* Or define its own animation behavior here */
+    font-size: 3.5rem; /* Example: smaller when preview is small */
+    top: 10px;
+    transition: font-size 0.3s ease-out, top 0.3s ease-out;
+}
+
+#play-preview-section.is-settled .preview-visit-now-text {
+    font-size: 3.5rem; /* Restore original size */
+    top: 20px;
+    /* Reset any specific styles for the settled state if needed */
+}
+
+
+
+        #play-preview-section::before,
+#play-preview-section::after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--border-anim-thickness)); /* Offset to fill the parent's border area */
+    left: calc(-1 * var(--border-anim-thickness));
+    right: calc(-1 * var(--border-anim-thickness));
+    bottom: calc(-1 * var(--border-anim-thickness));
+    border-radius: 12px; /* Crucial: inherits from #play-preview-section */
+    pointer-events: none;
+    z-index: -1; /* Behind parent's content */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+#play-preview-section:hover {
+    /* General hover effect - apply a subtle scale up.
+       More specific hover effects for .is-animating can be added. */
+    transform: scale(1.02); /* JS transform will override this when fixed */
+    box-shadow: 0 10px 35px rgba(100, 255, 218, 0.25);
+}
+
+
+#play-preview-section:hover::before,
+#play-preview-section:hover::after {
+    opacity: 1;
+}
+
+
+#play-preview-section::after {
+    --sparkle-angle: 0deg;
+    /* Using a repeating conic gradient to create "dashes" or "sparkles" */
+    background-image: repeating-conic-gradient(
+        from var(--sparkle-angle),
+        #64ffda 0% 2%,         /* Bright Teal spark */
+        transparent 2% 10%,    /* Gap */
+        #4991e5 10% 12%,       /* Bright Blue spark */
+        transparent 12% 20%,   /* Gap */
+        #88ddff 20% 22%,       /* Lighter Cyan spark */
+        transparent 22% 30%    /* Larger gap before repeat */
+    );
+    /* Animation to rotate the sparkles */
+    animation: rotateSparkles 2.5s linear infinite, shimmerEffect 1.5s infinite alternate;
+
+    /* Mask to make it appear only as a border */
+    -webkit-mask: /* Same masking as ::before */
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: var(--border-anim-thickness);
+}
+
+
+@keyframes pulseAura {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+        filter: blur(5px);
+    }
+    100% {
+        transform: scale(1.05); /* Slightly expand the glow */
+        opacity: 1;
+        filter: blur(8px); /* More blur when expanded */
+    }
+}
+
+@keyframes rotateSparkles {
+    to {
+        --sparkle-angle: 360deg;
+    }
+}
+
+@keyframes shimmerEffect {
+    0% { filter: brightness(0.8) saturate(1); }
+    50% { filter: brightness(1.5) saturate(1.3); } /* Brighter and more saturated */
+    100% { filter: brightness(0.8) saturate(1); }
+}
+
+
+
+     </style>
+    </head>
+
+    <body>    
+
+    <header id="site-header">
+        <a href="#" class="logo">Authenti<span>Check</span></a>
+        <nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false">☰</button>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#workflow">How It Works</a>
+                <a href="#pricing-section">Pricing</a>
+                <a href="#testimonials">Testimonials</a>
+                <div class="beta-signup">
+                    <input type="email" placeholder="Email for updates" class="beta-input" aria-label="Email for updates">
+                    <button type="button" class="button-primary beta-button">Subscribe</button>
+                </div>
+                <a href="play.html" class="button-secondary">Request Demo</a>            </div>
+        </nav>
+    </header>
+
+    <svg class = "bg-animation" width="650" height="350"
+     viewBox="0 0 650 350" xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink" 
+     style="background-color: #0A0F1E; opacity: 0.05; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+        <defs>
+          <!-- === GRADIENTS === -->
+          <radialGradient id="aiEngineCoreGlow" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+            <stop offset="0%" stop-color="#4DD0E1" stop-opacity="1"/>
+            <stop offset="60%" stop-color="#00BCD4" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#00796B" stop-opacity="0.3"/>
+          </radialGradient>
+          <linearGradient id="documentScreenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#1E2A3B" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#101828" stop-opacity="0.9"/>
+          </linearGradient>
+          <linearGradient id="scanLineBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#80DEEA" stop-opacity="0"/>
+            <stop offset="30%" stop-color="#4DD0E1" stop-opacity="1"/>
+            <stop offset="70%" stop-color="#4DD0E1" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#80DEEA" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFEB3B" stop-opacity="0.7"/>
+            <stop offset="50%" stop-color="#FDD835" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#FFEB3B" stop-opacity="0.7"/>
+          </linearGradient>
+          <linearGradient id="connectorLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF9800"/>
+            <stop offset="100%" stop-color="#FFC107"/>
+          </linearGradient>
+          <linearGradient id="progressBarGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4CAF50"/>
+              <stop offset="100%" stop-color="#81C784"/>
+          </linearGradient>
+      
+          <!-- === FILTERS === -->
+          <filter id="screenSubtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+            <feOffset dy="1" result="offsetBlur"/>
+            <feFlood flood-color="#4FC3F7" flood-opacity="0.3"/>
+            <feComposite in2="offsetBlur" operator="in"/>
+            <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="textHighlightEffect" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="enginePulseGlowEffect" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+          </filter>
+          <filter id="globalTextGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="0.5" result="blur"/>
+              <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+          </filter>
+      
+          <!-- === PATTERNS === -->
+          <pattern id="backgroundGrid" patternUnits="userSpaceOnUse" width="25" height="25">
+            <path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(50,70,100,0.2)" stroke-width="0.5"/>
+            <circle cx="0" cy="0" r="0.5" fill="rgba(79,195,247,0.3)">
+                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="5s" repeatCount="indefinite"/>
+            </circle>
+          </pattern>
+      
+          <!-- === SYMBOLS === -->
+          <symbol id="abstractTextLineSymbol" viewBox="0 0 100 4">
+            <rect x="0" y="0.5" width="100" height="3" rx="1" fill="rgba(150,180,220,0.6)"/>
+          </symbol>
+          <symbol id="dataParticleSymbol" viewBox="0 0 8 8">
+            <circle cx="4" cy="4" r="2.5" fill="#FFD700" opacity="0.8"/>
+            <circle cx="4" cy="4" r="1" fill="#FFF9C4"/>
+          </symbol>
+          <symbol id="aiEngineGearSymbol" viewBox="-10 -10 20 20">
+            <path d="M0,-9 L2,-7 L7,-7 L9,-2 L7,0 L9,2 L7,7 L2,7 L0,9 L-2,7 L-7,7 L-9,2 L-7,0 L-9,-2 L-7,-7 L-2,-7 Z" fill="#293A5B" stroke="#4FC3F7" stroke-width="0.7"/>
+            <circle cx="0" cy="0" r="3" fill="#1A2340"/>
+          </symbol>
+           <symbol id="statusIndicator" viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="8" stroke="#4FC3F7" stroke-width="1.5" fill="none"/>
+              <circle id="indicatorDot" cx="10" cy="10" r="5" fill="#FFC107">
+                  <animate attributeName="fill" values="#FFC107;#F44336;#4CAF50;#FFC107" dur="6s" repeatCount="indefinite"/>
+                  <animate attributeName="r" values="5;6;5" dur="1s" repeatCount="indefinite"/>
+              </circle>
+          </symbol>
+        </defs>
+      
+        <!-- === BACKGROUND LAYER === -->
+        <rect width="100%" height="100%" fill="url(#backgroundGrid)"/>
+        <g id="backgroundAmbience" opacity="0.7">
+          <ellipse cx="150" cy="175" rx="350" ry="200" fill="#101828" opacity="0.6">
+              <animate attributeName="opacity" values="0.4;0.7;0.4" dur="20s" repeatCount="indefinite"/>
+              <animateTransform attributeName="transform" type="rotate" from="0 150 175" to="20 150 175" dur="40s" repeatCount="indefinite" additive="sum"/>
+          </ellipse>
+          <ellipse cx="500" cy="175" rx="300" ry="180" fill="#0D47A1" opacity="0.3">
+              <animate attributeName="opacity" values="0.2;0.4;0.2" dur="18s" repeatCount="indefinite" begin="-5s"/>
+              <animateTransform attributeName="transform" type="rotate" from="0 500 175" to="-15 500 175" dur="35s" repeatCount="indefinite" additive="sum"/>
+          </ellipse>
+        </g>
+      
+        <!-- === DOCUMENT PANES LAYER === -->
+        <g id="documentPanesLayer">
+          <!-- Source Document (Left) -->
+          <g id="sourceDocGroup" transform="translate(40, 40)">
+            <rect class="documentPane" width="220" height="240" rx="8" ry="8" fill="url(#documentScreenGradient)" stroke="#37474F" stroke-width="1.5" filter="url(#screenSubtleGlow)"/>
+            <text x="110" y="22" fill="#B0BEC5" font-size="12" text-anchor="middle" filter="url(#globalTextGlow)">SOURCE DOCUMENT</text>
+            <g id="sourceDocTextLines" transform="translate(15, 35)">
+              <script>
+                // Dynamically create text lines for source document
+                const sourceLinesContainer = document.getElementById('sourceDocTextLines');
+                for (let i = 0; i < 18; i++) {
+                  let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+                  use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#abstractTextLineSymbol');
+                  use.setAttribute('x', '0');
+                  use.setAttribute('y', i * 11);
+                  use.setAttribute('width', Math.random() * 40 + 150); // Vary line length
+                  use.setAttribute('opacity', '0');
+                  
+                  let anim = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+                  anim.setAttribute('attributeName', 'opacity');
+                  anim.setAttribute('values', '0;0.7');
+                  anim.setAttribute('dur', '0.5s');
+                  anim.setAttribute('begin', (i * 0.05 + 0.5) + 's'); // Staggered load
+                  anim.setAttribute('fill', 'freeze');
+                  use.appendChild(anim);
+                  sourceLinesContainer.appendChild(use);
+                }
+              </script>
+            </g>
+            <g id="sourceHighlightsContainer"/>
+          </g>
+      
+          <!-- Submitted Document (Right) -->
+          <g id="submittedDocGroup" transform="translate(390, 40)">
+            <rect class="documentPane" width="220" height="240" rx="8" ry="8" fill="url(#documentScreenGradient)" stroke="#37474F" stroke-width="1.5" filter="url(#screenSubtleGlow)"/>
+            <text x="110" y="22" fill="#B0BEC5" font-size="12" text-anchor="middle" filter="url(#globalTextGlow)">SUBMITTED DOCUMENT</text>
+            <g id="submittedDocTextLines" transform="translate(15, 35)">
+               <script>
+                // Dynamically create text lines for submitted document
+                const submittedLinesContainer = document.getElementById('submittedDocTextLines');
+                for (let i = 0; i < 18; i++) {
+                  let use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+                  use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#abstractTextLineSymbol');
+                  use.setAttribute('x', '0');
+                  use.setAttribute('y', i * 11);
+                  use.setAttribute('width', Math.random() * 40 + 150);
+                  use.setAttribute('opacity', '0');
+                  
+                  let anim = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+                  anim.setAttribute('attributeName', 'opacity');
+                  anim.setAttribute('values', '0;0.7');
+                  anim.setAttribute('dur', '0.5s');
+                  anim.setAttribute('begin', (i * 0.05 + 0.8) + 's'); // Staggered load
+                  anim.setAttribute('fill', 'freeze');
+                  use.appendChild(anim);
+                  submittedLinesContainer.appendChild(use);
+                }
+              </script>
+            </g>
+            <g id="submittedHighlightsContainer"/>
+          </g>
+        </g>
+      
+        <!-- === AI ANALYSIS ENGINE LAYER === -->
+        <g id="aiEngineGroup" transform="translate(325, 160)" filter="url(#enginePulseGlowEffect)">
+          <circle id="engineShell1" cx="0" cy="0" r="55" fill="rgba(30,50,90,0.6)" stroke="#3F51B5" stroke-width="1"/>
+          <circle id="engineShell2" cx="0" cy="0" r="48" fill="rgba(20,40,80,0.7)" stroke="#4FC3F7" stroke-width="1.5"/>
+          <circle id="engineActualCore" cx="0" cy="0" r="28" fill="url(#aiEngineCoreGlow)">
+            <animate attributeName="r" values="26;30;26" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+          </circle>
+          
+          <use xlink:href="#aiEngineGearSymbol" width="30" height="30" x="-15" y="-15" opacity="0.8">
+              <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite" />
+          </use>
+          <use xlink:href="#aiEngineGearSymbol" width="25" height="25" x="-12.5" y="-12.5" opacity="0.7" transform="rotate(30)">
+              <animateTransform attributeName="transform" type="rotate" from="30 0 0" to="-330 0 0" dur="6s" repeatCount="indefinite" begin="-1s"/>
+          </use>
+           <g opacity="0.6">
+              <path d="M0,-40 A40,40 0 0 1 28.28,-28.28" fill="none" stroke="#81D4FA" stroke-width="1.5" stroke-dasharray="3 3">
+                   <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="15s" repeatCount="indefinite"/>
+              </path>
+              <path d="M0,40 A40,40 0 0 1 -28.28,28.28" fill="none" stroke="#4DD0E1" stroke-width="1.5" stroke-dasharray="4 2">
+                  <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="-360 0 0" dur="18s" repeatCount="indefinite"/>
+              </path>
+          </g>
+        </g>
+      
+        <!-- === DATA FLOW LINES LAYER === -->
+        <g id="dataFlowLinesLayer" opacity="0.8">
+          <path id="flowPathFromSource" d="M200,100 C250,120 280,140 310,155" fill="none" stroke="none"/>
+          <path id="flowPathFromSubmitted" d="M450,100 C400,120 370,140 340,155" fill="none" stroke="none"/>
+          
+          <script>
+              // Create data particles
+              const dataFlowContainer = document.getElementById('dataFlowLinesLayer');
+              const paths = ['#flowPathFromSource', '#flowPathFromSubmitted'];
+              for(let p=0; p < paths.length; p++){
+                  for (let i = 0; i < 5; i++) { // 5 particles per path
+                      let particle = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+                      particle.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#dataParticleSymbol');
+                      particle.setAttribute('width', (Math.random() * 4 + 4)); // size 4-8
+                      particle.setAttribute('height', particle.getAttribute('width'));
+                      
+                      let motion = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+                      motion.setAttribute('dur', (Math.random() * 1 + 2) + 's'); // duration 2-3s
+                      motion.setAttribute('repeatCount', 'indefinite');
+                      motion.setAttribute('begin', (i * 0.3 + p * 0.1) + 's');
+                      
+                      let mpath = document.createElementNS('http://www.w3.org/2000/svg', 'mpath');
+                      mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', paths[p]);
+                      motion.appendChild(mpath);
+                      particle.appendChild(motion);
+      
+                      let opacityAnim = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+                      opacityAnim.setAttribute('attributeName', 'opacity');
+                      opacityAnim.setAttribute('values', '0;0.9;0.9;0');
+                      opacityAnim.setAttribute('dur', motion.getAttribute('dur'));
+                      opacityAnim.setAttribute('repeatCount', 'indefinite');
+                      opacityAnim.setAttribute('begin', motion.getAttribute('begin'));
+                      particle.appendChild(opacityAnim);
+                      dataFlowContainer.appendChild(particle);
+                  }
+              }
+          </script>
+        </g>
+      
+        <!-- === SCANNING AND MATCHING LAYER === -->
+        <g id="scanningAndMatchingLayer">
+          <!-- Scan line for source document -->
+          <rect id="sourceDocScanLine" x="55" y="45" width="2" height="225" fill="url(#scanLineBeam)" opacity="0.9">
+            <animate attributeName="y" values="45;265;45" dur="6s" repeatCount="indefinite" begin="2s"/>
+          </rect>
+          <!-- Scan line for submitted document -->
+          <rect id="submittedDocScanLine" x="405" y="45" width="2" height="225" fill="url(#scanLineBeam)" opacity="0.9">
+            <animate attributeName="y" values="45;265;45" dur="6s" repeatCount="indefinite" begin="2.3s"/>
+          </rect>
+      
+          <!-- Container for dynamically added matches and connectors -->
+          <g id="matchesAndConnectorsContainer"></g>
+        </g>
+        
+        <!-- === RESULTS FEEDBACK LAYER === -->
+        <g id="resultsFeedbackPanel" transform="translate(235, 300)">
+          <rect width="180" height="40" rx="5" ry="5" fill="rgba(20,30,50,0.85)" stroke="#4FC3F7" stroke-width="1"/>
+          <use xlink:href="#statusIndicator" x="10" y="10" width="20" height="20"/>
+          <text id="analysisStatusText" x="100" y="17" font-size="11" fill="#CFD8DC" text-anchor="middle" filter="url(#globalTextGlow)">ANALYZING DOCUMENTS...</text>
+          <rect id="progressBarBack" x="40" y="25" width="130" height="8" rx="2" fill="#37474F"/>
+          <rect id="progressBarFront" x="40" y="25" width="0" height="8" rx="2" fill="url(#progressBarGradient)">
+              <animate id="progressAnim" attributeName="width" values="0;130" dur="7s" begin="1s" fill="freeze" />
+          </rect>
+          <text id="similarityScoreText" x="100" y="17" font-size="12" font-weight="bold" fill="#81C784" text-anchor="middle" opacity="0" filter="url(#globalTextGlow)">SIMILARITY: 0%</text>
+        </g>
+  
+    </svg>
+
+    <section id="landing-section">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Uncover the True Story Behind Every Submission</h1>
+                <p>AuthentiCheck provides unparalleled insight into assignment originality by analyzing writing patterns, source material, and AI indicators. Go beyond simple plagiarism checks.</p>
+                
+                <div class="hero-buttons">
+                    <a href="play.html" class="button-primary" style = "display: none;">Analyze a Sample</a>
+                    <a href="#features" class="button-secondary" style = "display: none;">Explore Capabilities</a>
+                </div>
+
+            </div>
+            <div class="hero-image">
+
+                <svg viewBox="0 0 600 500" xmlns="http://www.w.org/2000/svg">
+                    <defs>
+                        <!-- Original Gradients & Filters -->
+                        <linearGradient id="docCoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1A2E4A"></stop>
+                            <stop offset="100%" stop-color="#112240"></stop>
+                        </linearGradient>
+                        <linearGradient id="scanLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#64ffda" stop-opacity="0"></stop>
+                            <stop offset="20%" stop-color="#64ffda" stop-opacity="0.8"></stop>
+                            <stop offset="50%" stop-color="#64ffda" stop-opacity="1"></stop>
+                            <stop offset="80%" stop-color="#64ffda" stop-opacity="0.8"></stop>
+                            <stop offset="100%" stop-color="#64ffda" stop-opacity="0"></stop>
+                        </linearGradient>
+                        <filter id="glowDoc" x="-30%" y="-30%" width="160%" height="160%">
+                            <feGaussianBlur stdDeviation="5" result="blur"></feGaussianBlur>
+                            <feMerge>
+                                <feMergeNode in="blur"></feMergeNode>
+                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                            </feMerge>
+                        </filter>
+                        <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
+                            <feMerge>
+                                <feMergeNode in="blur"></feMergeNode>
+                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                            </feMerge>
+                        </filter>
+            
+                        <!-- New: Background Grid Pattern -->
+                        <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a3b5f" stroke-width="0.5"/>
+                        </pattern>
+            
+                        <!-- New: Data Packet Gradient -->
+                        <radialGradient id="dataPacketGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                            <stop offset="0%" stop-color="#88ddff" stop-opacity="1"/>
+                            <stop offset="70%" stop-color="#64ffda" stop-opacity="0.8"/>
+                            <stop offset="100%" stop-color="#64ffda" stop-opacity="0"/>
+                        </radialGradient>
+            
+                        <!-- New: Paths for data packets (reusable) -->
+                        <path id="path-ai-doc" d="M90 150 Q 180 130, 250 200" stroke="none" fill="none"></path>
+                        <path id="path-web-doc" d="M130 300 Q 200 280, 250 220" stroke="none" fill="none"></path>
+                        <path id="path-pattern-doc" d="M410 120 Q 350 150, 290 200" stroke="none" fill="none"></path>
+                        <path id="path-sources-doc" d="M370 320 Q 320 290, 280 230" stroke="none" fill="none"></path>
+                        <path id="path-ai-web" d="M90 162 Q 100 230, 120 288" stroke="none" fill="none"></path>
+                        <path id="path-pattern-sources" d="M410 132 Q 400 220, 380 308" stroke="none" fill="none"></path>
+                    </defs>
+            
+                    <!-- Background Elements -->
+                    <rect width="100%" height="100%" fill="url(#gridPattern)" opacity="0.3">
+                        <animate attributeName="opacity" values="0.3;0.1;0.3" dur="15s" repeatCount="indefinite"/>
+                    </rect>
+                    
+                    <g id="background-particles">
+                        <!-- Generate a few particles -->
+                        <circle cx="50" cy="50" r="1" fill="#64ffda" opacity="0">
+                            <animate attributeName="opacity" values="0;0.5;0" dur="5s" begin="0s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="50;70" dur="5s" begin="0s" repeatCount="indefinite" additive="sum"/>
+                            <animate attributeName="cy" values="50;40" dur="5s" begin="0s" repeatCount="indefinite" additive="sum"/>
+                        </circle>
+                        <circle cx="150" cy="350" r="1.5" fill="#64ffda" opacity="0">
+                            <animate attributeName="opacity" values="0;0.6;0" dur="7s" begin="1s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="150;130" dur="7s" begin="1s" repeatCount="indefinite" additive="sum"/>
+                            <animate attributeName="cy" values="350;360" dur="7s" begin="1s" repeatCount="indefinite" additive="sum"/>
+                        </circle>
+                         <circle cx="500" cy="80" r="1" fill="#8892b0" opacity="0">
+                            <animate attributeName="opacity" values="0;0.4;0" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="500;520" dur="6s" begin="0.5s" repeatCount="indefinite" additive="sum"/>
+                        </circle>
+                         <circle cx="400" cy="400" r="1.2" fill="#8892b0" opacity="0">
+                            <animate attributeName="opacity" values="0;0.3;0" dur="8s" begin="2s" repeatCount="indefinite"/>
+                            <animate attributeName="cy" values="400;380" dur="8s" begin="2s" repeatCount="indefinite" additive="sum"/>
+                        </circle>
+                    </g>
+            
+                    <!-- Central Document -->
+                    <g transform="translate(225, 150)" filter="url(#glowDoc)" id="document-group">
+                         <animateTransform attributeName="transform" type="scale" values="1;1.01;1" dur="5s" begin="0s" repeatCount="indefinite" additive="sum" transform-origin="center"/>
+                        <rect x="0" y="0" width="150" height="200" rx="8" ry="8" fill="url(#docCoreGrad)" stroke="#39bdd6" stroke-width="1.5">
+                             <animate attributeName="stroke" values="#39bdd6;#64ffda;#39bdd6" dur="4s" repeatCount="indefinite"/>
+                        </rect>
+                        
+                        <!-- Animating lines as if being written/scanned -->
+                        <line x1="20" y1="30" x2="20" y2="30" stroke="#64ffda" stroke-width="2">
+                            <animate attributeName="x2" values="20;130" dur="0.5s" begin="0.5s" fill="freeze"/>
+                            <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="1s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="20" y1="50" x2="20" y2="50" stroke="#64ffda" stroke-width="2">
+                            <animate attributeName="x2" values="20;110" dur="0.4s" begin="0.8s" fill="freeze"/>
+                            <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="1.5s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="20" y1="70" x2="20" y2="70" stroke="#64ffda" stroke-width="2">
+                            <animate attributeName="x2" values="20;130" dur="0.5s" begin="1.1s" fill="freeze"/>
+                             <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="2s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="20" y1="90" x2="20" y2="90" stroke="#8892b0" stroke-width="2">
+                            <animate attributeName="x2" values="20;100" dur="0.4s" begin="1.4s" fill="freeze"/>
+                            <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="2.5s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="20" y1="110" x2="20" y2="110" stroke="#8892b0" stroke-width="2">
+                            <animate attributeName="x2" values="20;130" dur="0.5s" begin="1.7s" fill="freeze"/>
+                            <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="3s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="20" y1="130" x2="20" y2="130" stroke="#8892b0" stroke-width="2">
+                            <animate attributeName="x2" values="20;120" dur="0.45s" begin="2s" fill="freeze"/>
+                            <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="3.5s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="20" y1="150" x2="20" y2="150" stroke="#8892b0" stroke-width="2">
+                            <animate attributeName="x2" values="20;130" dur="0.5s" begin="2.3s" fill="freeze"/>
+                            <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="4s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="20" y1="170" x2="20" y2="170" stroke="#8892b0" stroke-width="2">
+                            <animate attributeName="x2" values="20;90" dur="0.35s" begin="2.6s" fill="freeze"/>
+                            <animate attributeName="opacity" values="1;1;0.3;1" dur="8s" begin="4.5s" repeatCount="indefinite"/>
+                        </line>
+            
+                        <rect x="10" y="10" width="130" height="6" fill="url(#scanLineGrad)" rx="2" ry="2">
+                            <animate attributeName="y" values="10;184;10" dur="2.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"/>
+                            <animate attributeName="opacity" values="1;0.7;1" dur="2.5s" repeatCount="indefinite"/>
+                        </rect>
+                    </g>
+            
+                    <!-- Tracking Elements & Data Flow -->
+                    <g id="tracking-elements">
+                        
+                        <!-- AI Node -->
+                        <g id="node-ai" class="node" style="cursor:pointer;">
+                            <circle cx="80" cy="150" r="12" fill="#112240" stroke="#64ffda" stroke-width="1.5" filter="url(#nodeGlow)">
+                                <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="0s"/>
+                            </circle>
+                            <text x="80" y="155" fill="#64ffda" font-size="10" text-anchor="middle" style="pointer-events:none;">AI</text>
+                            <path id="connector-ai-doc" d="M90 150 Q 180 130, 250 200" stroke="#4991e5" stroke-width="1" fill="none" stroke-dasharray="3 3">
+                                <animate attributeName="stroke-dashoffset" values="0;12" dur="1s" repeatCount="indefinite"/>
+                            </path>
+                            <!-- Data packet from AI to Doc -->
+                            <circle r="3" fill="url(#dataPacketGrad)" opacity="0">
+                                <animateMotion dur="2s" repeatCount="indefinite" begin="0s">
+                                    <mpath xlink:href="#path-ai-doc"/>
+                                </animateMotion>
+                                <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="0s"/>
+                            </circle>
+                        </g>
+            
+                        <!-- WEB Node -->
+                        <g id="node-web" class="node" style="cursor:pointer;">
+                            <circle cx="120" cy="300" r="12" fill="#112240" stroke="#64ffda" stroke-width="1.5" filter="url(#nodeGlow)">
+                                 <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                            </circle>
+                            <text x="120" y="305" fill="#64ffda" font-size="8" text-anchor="middle" style="pointer-events:none;">WEB</text>
+                            <path id="connector-web-doc" d="M130 300 Q 200 280, 250 220" stroke="#39bdd6" stroke-width="1" fill="none" stroke-dasharray="3 3">
+                                <animate attributeName="stroke-dashoffset" values="12;0" dur="1.2s" repeatCount="indefinite"/>
+                            </path>
+                             <!-- Data packet from WEB to Doc -->
+                            <circle r="3.5" fill="url(#dataPacketGrad)" opacity="0">
+                                <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.5s">
+                                    <mpath xlink:href="#path-web-doc"/>
+                                </animateMotion>
+                                <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+                            </circle>
+                        </g>
+            
+                        <!-- PATTERN Node -->
+                        <g id="node-pattern" class="node" style="cursor:pointer;">
+                            <circle cx="420" cy="120" r="12" fill="#112240" stroke="#64ffda" stroke-width="1.5" filter="url(#nodeGlow)">
+                                 <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="0.2s"/>
+                            </circle>
+                            <text x="420" y="125" fill="#64ffda" font-size="7" text-anchor="middle" style="pointer-events:none;">PATTERN</text>
+                            <path id="connector-pattern-doc" d="M410 120 Q 350 150, 290 200" stroke="#3bd4cb" stroke-width="1" fill="none" stroke-dasharray="3 3">
+                                <animate attributeName="stroke-dashoffset" values="0;12" dur="0.8s" repeatCount="indefinite"/>
+                            </path>
+                            <!-- Data packet from PATTERN to Doc -->
+                            <circle r="3" fill="url(#dataPacketGrad)" opacity="0">
+                                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.2s">
+                                    <mpath xlink:href="#path-pattern-doc"/>
+                                </animateMotion>
+                                <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.2s"/>
+                            </circle>
+                        </g>
+            
+                        <!-- SOURCES Node -->
+                        <g id="node-sources" class="node" style="cursor:pointer;">
+                            <circle cx="380" cy="320" r="12" fill="#112240" stroke="#64ffda" stroke-width="1.5" filter="url(#nodeGlow)">
+                                <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="0.7s"/>
+                            </circle>
+                            <text x="380" y="325" fill="#64ffda" font-size="7" text-anchor="middle" style="pointer-events:none;">SOURCES</text>
+                            <path id="connector-sources-doc" d="M370 320 Q 320 290, 280 230" stroke="#4991e5" stroke-width="1" fill="none" stroke-dasharray="3 3">
+                                <animate attributeName="stroke-dashoffset" values="10;0" dur="1.1s" repeatCount="indefinite"/>
+                            </path>
+                            <!-- Data packet from SOURCES to Doc -->
+                            <circle r="3.2" fill="url(#dataPacketGrad)" opacity="0">
+                                <animateMotion dur="2.1s" repeatCount="indefinite" begin="0.7s">
+                                    <mpath xlink:href="#path-sources-doc"/>
+                                </animateMotion>
+                               <animate attributeName="opacity" values="0;1;1;0" dur="2.1s" repeatCount="indefinite" begin="0.7s"/>
+                            </circle>
+                        </g>
+            
+                        <!-- Inter-node connections and data flow -->
+                        <g id="inter-node-flow">
+                            <path id="connector-ai-web" d="M90 162 Q 100 230, 120 288" stroke="#785cbff" stroke-width="0.8" fill="none" stroke-dasharray="2 2" opacity="0.7">
+                                 <animate attributeName="stroke-dashoffset" values="0;8" dur="1.5s" repeatCount="indefinite" begin="1s"/>
+                            </path>
+                             <circle r="2.5" fill="url(#dataPacketGrad)" opacity="0">
+                                <animateMotion dur="2.5s" repeatCount="indefinite" begin="1s">
+                                    <mpath xlink:href="#path-ai-web"/>
+                                </animateMotion>
+                                <animate attributeName="opacity" values="0;0.8;0.8;0" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                            </circle>
+            
+                            <path id="connector-pattern-sources" d="M410 132 Q 400 220, 380 308" stroke="#5c9eff" stroke-width="0.8" fill="none" stroke-dasharray="2 2" opacity="0.7">
+                                <animate attributeName="stroke-dashoffset" values="8;0" dur="1.3s" repeatCount="indefinite" begin="1.5s"/>
+                            </path>
+                            <circle r="2.5" fill="url(#dataPacketGrad)" opacity="0">
+                                <animateMotion dur="2.3s" repeatCount="indefinite" begin="1.5s">
+                                    <mpath xlink:href="#path-pattern-sources"/>
+                                </animateMotion>
+                                <animate attributeName="opacity" values="0;0.8;0.8;0" dur="2.3s" repeatCount="indefinite" begin="1.5s"/>
+                            </circle>
+                        </g>
+            
+                    </g>
+                    
+                    <!-- Overall subtle parallax/drift effect for layers -->
+                    <animateTransform attributeName="transform" type="translate" values="0 0; 1 -1.5; -1 1.5; 0 0" dur="12s" repeatCount="indefinite" additive="sum" />
+                    <style>
+                        .node circle {
+                            transition: r 0.3s ease-out, stroke-width 0.3s ease-out;
+                        }
+                        .node:hover circle {
+                            stroke: #88ddff;
+                            stroke-width: 2.5;
+                        }
+                        .node:hover text {
+                            font-weight: bold;
+                            fill: #88ddff;
+                        }
+                         #document-group:hover rect{
+                            stroke: #88ddff !important; /* Override SMIL animation for hover */
+                         }
+                    </style>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <div id="play-preview-section-placeholder" style="border-radius: 10px !important;"></div>
+    
+    <section id="play-preview-section" class="section" style="border-radius: 10px !important; ">
+        <div class="preview-visit-now-text" style="border-radius: 10px !important;">Visit now</div> <!-- <<<< NEW TEXT ELEMENT -->
+        <div class="rimlight-hover-effect" style="border-radius: 10px !important;"></div>
+        <div class="container" style="border-radius: 10px !important;">
+            <h2 class="section-title animate-on-scroll" style="border-radius: 10px !important;">Try It Live!</h2>
+            <p class="section-subtitle animate-on-scroll" style="border-radius: 10px !important;">
+                Get a full interactive preview of our STEM animation platform below.
+                Click anywhere on the preview to dive into the full experience.
+            </p>
+            <div id="play-html-preview-wrapper" style="border-radius: 10px !important;" class="animate-on-scroll">
+                <iframe id="play-html-preview-iframe" style="border-radius: 10px !important;" src="play.html" title="ImagineASTORE Play Preview" loading="lazy"></iframe>
+                <div id="play-html-preview-overlay" style="border-radius: 10px !important;" onmouseover="window.location.href='play.html'"></div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+    <section id="problem-section" class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">The Hidden Complexities of Modern Submissions</h2>
+            <p class="section-subtitle animate-on-scroll">Identifying true authorship is harder than ever. AuthentiCheck tackles the challenges educators face daily.</p>
+  
+        </div>
+    </section>
+
+    <section id="features" class="features section"> 
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">AuthentiCheck: Deep Dive into Originality</h2>
+            <p class="section-subtitle animate-on-scroll">Our multi-layered analysis goes beyond surface scans to reveal the true genesis of student work.</p>
+            <div class="features-grid stagger-children">
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-search-dollar"></i></div> 
+                    <h3>Multi-Vector Plagiarism Search</h3>
+                    <p>Cross-references text against billions of web pages, academic journals, and an internal repository of past submissions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <h3>Advanced AI Authorship Detection</h3>
+                    <p>Utilizes sophisticated linguistic analysis  to identify patterns indicative of AI-generated content.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-fingerprint"></i></div>
+                    <h3>Writing Pattern Forensics</h3>
+                    <p>Analyzes typing rhythm (if data available), paste activity, editing velocity, and style consistency for authorship cues.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>Granular Originality Reports</h3>
+                    <p>Provides clear, actionable reports highlighting suspicious sections, source matches, AI probability, and writing anomalies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-history"></i></div>
+                    <h3>Submission History Analysis</h3>
+                    <p>Compares current submissions against a student's past work (if available) to detect significant deviations in style or quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Customizable Sensitivity Levels</h3>
+                    <p>Adjust detection thresholds for AI and to suit different assignment types and institutional policies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="workflow section" id="workflow">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Insightful Process</h2>
+            <p class="section-subtitle animate-on-scroll">AuthentiCheck employs a rigorous process to deliver reliable originality assessments.</p>
+            <div class="workflow-steps stagger-children">
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-upload"></i></div>
+                    <h3>1. Secure Submission</h3>
+                    <p>Upload documents easily. We support various file types (DOCX, PDF, TXT) and integrate with LMS platforms.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>2. Multi-Layered Analysis</h3>
+                    <p>Our engine meticulously scans for plagiarism, AI content, and analyzes writing patterns & metadata.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>3. Comprehensive Report</h3>
+                    <p>Receive an intuitive report detailing findings, originality scores, and highlighted areas for review.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ 
+
+
+    <section id="pricing-section" class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Transparent Pricing for Every Institution</h2>
+            <p class="section-subtitle animate-on-scroll">Choose a plan that suits your needs and empower your educators with AuthentiCheck. All plans include robust plagiarism and AI detection.</p>
+    
+            <div class="pricing-cards-container stagger-children">
+                <div class="pricing-card">
+                    <h3>Individual Educator</h3>
+                    <p class="plan-description">Perfect for single teachers or small teams.</p>
+                    <div class="price-container">
+                        <span class="price-amount">$2.99</span>
+                        <span class="price-unit">/ month</span>
+                    </div>
+                    <ul class="features-list">
+                        <li>Up to 150 document checks/month</li>
+                        <li>Advanced Plagiarism Detection</li>
+                        <li>Standard AI Content Identification</li>
+                        <li>Basic Writing Pattern Insights</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <a href="#cta" class="cta-button">Get Started</a>
+                </div>
+    
+                <div class="pricing-card featured">
+                    <h3>Department License</h3>
+                    <p class="plan-description">Ideal for academic departments or larger groups.</p>
+                    <div class="price-container">
+                        <span class="price-amount">$9.99</span>
+                        <span class="price-unit">/ month</span>
+                    </div>
+                    <ul class="features-list">
+                        <li>Up to 1000 document checks/month</li>
+                        <li>Everything in Individual, plus:</li>
+                        <li>Enhanced AI Detection Accuracy</li>
+                        <li>Detailed Writing Pattern Forensics</li>
+                        <li>Basic LMS Integration Options</li>
+                        <li>Priority Email Support</li>
+                    </ul>
+                    <a href="#cta" class="cta-button">Choose Plan</a>
+                </div>
+    
+                <div class="pricing-card enterprise">
+                    <h3>Institutional Plan</h3>
+                    <p class="plan-description">Comprehensive solution for schools & universities.</p>
+                    <div class="price-container">
+                        <span class="price-amount">Custom</span>
+                        <span class="price-unit"></span>
+                    </div>
+                    <ul class="features-list">
+                        <li>Unlimited Document Checks</li>
+                        <li>Everything in Department, plus:</li>
+                        <li>Full LMS Integration Suite</li>
+                        <li>Submission History Analysis</li>
+                        <li>Customizable Sensitivity & Reporting</li>
+                        <li>Dedicated Account Manager & Training</li>
+                    </ul>
+                    <a href="#cta" class="cta-button">Contact Sales</a>
+                </div>
+            </div>
+            <p class="pricing-footnote animate-on-scroll">
+                * For bulk purchases above 3000 students. All prices are in USD.  <br>
+                Contact us for custom quotes, pilot programs, and API access needs.
+            </p>
+        </div>
+    </section>
+
+    <section class="testimonials section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Trusted by Educators & Institutions</h2>
+            <p class="section-subtitle animate-on-scroll">Hear how AuthentiCheck is helping maintain academic integrity and foster genuine learning.</p>
+            <div class="testimonial-grid stagger-children">
+                 <div class="testimonial-card">
+                     <div class="testimonial-text">
+                         "AuthentiCheck's ability to flag subtle AI usage and analyze writing patterns is a game-changer for our university. It's far more than just a plagiarism checker."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-tie"></i></div>
+                         <div class="author-details">
+                             <div class="author-name">Prof. Amanda Chen</div>
+                             <div class="author-role">Academic Integrity Officer, Westwood University</div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="testimonial-card">
+                     <div class="testimonial-text">
+                        "The detailed reports from AuthentiCheck give me the confidence to address originality concerns with students constructively. The writing pattern analysis is particularly insightful."
+                    </div>
+                    <div class="testimonial-author">
+                         <div class="author-avatar"><i class="fas fa-chalkboard-teacher"></i></div>
+                         <div class="author-details">
+                             <div class="author-name">Mr. Brian Foster</div>
+                             <div class="author-role">History Department, Oak Valley Academy</div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="testimonial-card">
+                     <div class="testimonial-text">
+                        "We've seen a noticeable improvement in the originality of student work since implementing AuthentiCheck. The tool is easy to use and integrates well with our existing systems."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-cog"></i></div>
+                         <div class="author-details">
+                             <div class="author-name">Dr. Sarah Jenkins</div>
+                             <div class="author-role">Director of E-Learning, Maple State College</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta section" id="cta">
+        <div class="container">
+            <h2 class="animate-on-scroll">Ensure Authentic Work. Empower True Learning.</h2>
+            <p class="animate-on-scroll">Discover the depth of AuthentiCheck. Request a personalized demo or try a sample analysis today.</p>
+            <a href="play.html" class="cta-button animate-on-scroll">Request a Demo</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="footer-logo">imagine<span>ASTORE</span></a>
+                    <p class="footer-about">Transforming STEM education through interactive animation. Making complex equations and concepts easy to understand visually.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61574797665273" class="social-icon" aria-label="Facebook" title="Facebook" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/stejas809" class="social-icon" aria-label="Twitter" title="Twitter" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23 3.01006C22.0424 3.68553 20.9821 4.20217 19.86 4.54006C19.2577 3.84757 18.4573 3.35675 17.567 3.13398C16.6767 2.91122 15.7395 2.96725 14.8821 3.29451C14.0247 3.62177 13.2884 4.20446 12.773 4.96377C12.2575 5.72309 11.9877 6.62239 12 7.54006V8.54006C10.2426 8.58562 8.50127 8.19587 6.93101 7.4055C5.36074 6.61513 4.01032 5.44869 3 4.01006C3 4.01006 -1 13.0101 8 17.0101C5.94053 18.408 3.48716 19.109 1 19.0101C10 24.0101 21 19.0101 21 7.51006C20.9991 7.23151 20.9723 6.95365 20.92 6.68006C21.9406 5.67355 22.6608 4.40277 23 3.01006Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/tejas-shah-b22490156/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" fill="currentColor"/>
+                                <path d="M6 9H2V21H6V9Z" fill="currentColor"/>
+                                <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/tejnium1" class="social-icon" aria-label="Instagram" title="Instagram" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-subscribe">
+                <h4 class="footer-heading">Stay Informed</h4>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Your email address" required aria-label="Email address for newsletter">
+                    <button type="submit" class="button-primary">Subscribe</button>
+                </form>
+                <p class="subscribe-text">Updates on AuthentiCheck and academic integrity news.</p>
+            </div>
+            <div class="footer-bottom">
+                <div>© <span id="currentYear"></span> AuthentiCheck by ImagineASTORE. All rights reserved.</div>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+ 
+    <script>
+        
+        
+        document.addEventListener('DOMContentLoaded', () => {
+
+
+        // --- Standard JavaScript for smooth scroll, mobile menu, header scroll, animations ---
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const API_BASE_URL = 'https://sophisticated-twisty-lute.glitch.me'; // Example API
+        const subscribeForm = document.querySelector('.subscribe-form');
+        
+        if (subscribeForm) { /* ... (subscription form JS from original) ... */ }
+
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
+
+        if (menuToggle && navLinks) { /* ... (mobile menu JS from original) ... */ }
+
+        const header = document.getElementById('site-header');
+        if (header) { /* ... (header scroll JS from original) ... */ }
+
+        const observerOptions = { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0 };
+        const observerCallback = (entries, observer) => { /* ... (intersection observer JS from original) ... */ };
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll, .stagger-children, .feature-card, .step-card, .testimonial-card, .pricing-card, .icon-container, .pricing-footnote');
+        elementsToAnimate.forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { /* ... (smooth scroll JS from original) ... */ });
+        
+        const betaSignupContainer = document.querySelector('.beta-signup');
+        if (betaSignupContainer) { /* ... (beta signup/subscribe JS from original, ensure button says "Subscribe") ... */
+            const betaButton = betaSignupContainer.querySelector('.beta-button');
+            if(betaButton) betaButton.textContent = 'Subscribe'; // Ensure button text
+        }
+
+
+        const landingSection = document.getElementById('landing-section');
+    const heroContent = landingSection.querySelector('.hero-content'); // Adjusted selector
+    const scrollIndicator = landingSection.querySelector('.scroll-down-indicator');
+
+    const previewSection = document.getElementById('play-preview-section');
+    const previewPlaceholder = document.getElementById('play-preview-section-placeholder');
+
+    const previewTitle = previewSection.querySelector('.section-title');
+    const previewSubtitle = previewSection.querySelector('.section-subtitle');
+    const previewWrapper = previewSection.querySelector('#play-html-preview-wrapper');
+
+    if (!landingSection || !previewSection || !previewPlaceholder || !heroContent || !previewWrapper || !previewTitle || !previewSubtitle) {
+        console.error("One or more critical elements for parallax zoom not found.");
+        return;
+    }
+
+    const initial = {
+    opacity: 0.8,      // Slightly more visible
+    scale: 0.35,
+    topVH: 75,
+    leftVW: 50,
+    widthVW: 70,       // Maybe a little wider to be more noticeable
+    heightVH: 85,
+    translateX: '-50%',
+    translateY: '-50%',
+    borderRadius: '12px', // Consistent rounded corners
+    padding: '15px'    // Slightly more padding
+};
+
+    previewSection.classList.add('is-animating');
+
+
+    // Apply initial styles directly for immediate visibility
+    previewSection.style.position = 'fixed';
+    previewSection.style.opacity = initial.opacity;
+    previewSection.style.transform = `translate(${initial.translateX}, ${initial.translateY}) scale(${initial.scale})`;
+    previewSection.style.top = `${initial.topVH}vh`;
+    previewSection.style.left = `${initial.leftVW}vw`;
+    previewSection.style.width = `${initial.widthVW}vw`;
+    previewSection.style.height = `${initial.heightVH}vh`;
+    previewSection.style.borderRadius = initial.borderRadius;
+    previewSection.style.padding = initial.padding;
+    previewSection.style.backgroundColor = '#07111f'; // Ensure initial background
+    previewSection.style.boxShadow = '0 15px 50px rgba(0,0,0,0.3)';
+
+
+    // --- Animation Scroll Range ---
+    const animStartOffset = window.innerHeight * 0.15; // Start animation after 15vh of scroll
+    const animEndOffset = previewPlaceholder.offsetTop;
+
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+
+    function onScroll() {
+        const scrollY = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        let rawProgress = 0;
+        const landingScrollProgress = Math.min(1, scrollY / (viewportHeight * 0.75)); // Adjust divisor for sensitivity
+
+        if (heroContent) { // This is the .hero-content div
+            heroContent.style.opacity = `${Math.max(0, 1 - landingScrollProgress * 1.8)}`; // Fade out faster
+            // Content moves up faster than default scroll, appearing closer
+            heroContent.style.transform = `translateY(${scrollY * -0.3}px) scale(${1 - landingScrollProgress * 0.15})`;
+        }
+
+        const heroImage = landingSection.querySelector('.hero-image svg'); // Target the SVG itself for transform
+        if (heroImage) {
+            // Image moves up slower, appearing further away
+            heroImage.style.transform = `translateY(${scrollY * 0.15}px) scale(${1 - landingScrollProgress * 0.05})`;
+            heroImage.style.opacity = `${Math.max(0, 1 - landingScrollProgress * 1.2)}`;
+        }
+
+
+        if (scrollIndicator) {
+            scrollIndicator.style.opacity = `${Math.max(0, 1 - landingScrollProgress * 3.0)}`;
+            scrollIndicator.style.transform = `translateY(${scrollY * 0.5}px) translateX(-50%)`; // Make it scroll down too
+        }
+
+
+        // --- Rest of your existing scroll animation logic for previewSection ---
+        if (scrollY <= animStartOffset) {
+            rawProgress = 0;
+        } else if (scrollY >= animEndOffset) {
+            rawProgress = 1;
+        } else {
+            rawProgress = (scrollY - animStartOffset) / (animEndOffset - animStartOffset);
+        }
+        const progress = easeInOutCubic(rawProgress);
+
+
+        if (progress < 1) {
+            if (!previewSection.classList.contains('is-animating')) {
+                 previewSection.classList.add('is-animating');
+            }
+            previewSection.classList.remove('is-settled');
+            previewSection.style.position = 'fixed';
+
+            const currentOpacity = initial.opacity + (1 - initial.opacity) * progress;
+            previewSection.style.opacity = currentOpacity;
+
+            const currentScale = initial.scale + (1 - initial.scale) * progress;
+
+            const initialTopPx = (initial.topVH / 100) * viewportHeight;
+            const targetTopPxFixed = 0;
+            const currentTopPx = initialTopPx + (targetTopPxFixed - initialTopPx) * progress;
+            previewSection.style.top = `${currentTopPx}px`;
+            
+            const currentTranslateXPerc = parseFloat(initial.translateX) * (1 - progress);
+            const currentTranslateYPerc = parseFloat(initial.translateY) * (1 - progress);
+            previewSection.style.transform = `translate(${currentTranslateXPerc}%, ${currentTranslateYPerc}%) scale(${currentScale})`;
+
+            const finalWidthVW = 100;
+            const finalHeightVH = 100;
+            const currentWidthVW = initial.widthVW + (finalWidthVW - initial.widthVW) * progress;
+            const currentHeightVH = initial.heightVH + (finalHeightVH - initial.heightVH) * progress;
+            previewSection.style.width = `${currentWidthVW}vw`;
+            previewSection.style.height = `${currentHeightVH}vh`;
+
+            const currentBorderRadius = parseFloat(initial.borderRadius) * (1 - progress);
+            previewSection.style.borderRadius = `${currentBorderRadius}px`;
+
+            const initialPaddingNum = parseFloat(initial.padding);
+            const finalPaddingTopBottom = 80 -4; 
+            const finalPaddingLeftRight  = 0;
+            const currentPaddingTopBottom = initialPaddingNum + (finalPaddingTopBottom - initialPaddingNum) * progress;
+            const currentPaddingLeftRight = initialPaddingNum + (finalPaddingLeftRight - initialPaddingNum) * progress;
+            previewSection.style.padding = `${currentPaddingTopBottom}px ${currentPaddingLeftRight}px`;
+            
+            const contentFadeDelay = 0.1; 
+            const contentProgress = progress > contentFadeDelay ? Math.min(1, (progress - contentFadeDelay) / (1 - contentFadeDelay)) : 0;
+            
+            const currentContentOpacity = initial.opacity + (1 - initial.opacity) * contentProgress;
+
+            // Parallax for elements inside #play-preview-section
+            previewTitle.style.opacity = currentContentOpacity;
+            // Title moves slightly more/faster from its small state
+            previewTitle.style.transform = `translateY(${20 * (1 - contentProgress) * 1.2}px) scale(${0.8 + 0.2 * contentProgress})`;
+            const initialTitleSize = 1.2; 
+            const finalTitleSize = 2.5;   
+            previewTitle.style.fontSize = `${initialTitleSize + (finalTitleSize - initialTitleSize) * contentProgress}rem`;
+
+
+            previewSubtitle.style.opacity = currentContentOpacity;
+            // Subtitle moves at a standard rate
+            previewSubtitle.style.transform = `translateY(${15 * (1 - contentProgress)}px) scale(${0.9 + 0.1 * contentProgress})`;
+            const initialSubtitleSize = 0.7; 
+            const finalSubtitleSize = 1.125; 
+            previewSubtitle.style.fontSize = `${initialSubtitleSize + (finalSubtitleSize - initialSubtitleSize) * contentProgress}rem`;
+            const initialSubtitleMaxWidth = 90; 
+            previewSubtitle.style.maxWidth = `${initialSubtitleMaxWidth + (100 - initialSubtitleMaxWidth) * contentProgress}%`; 
+
+
+            previewWrapper.style.opacity = currentContentOpacity;
+            // Preview wrapper scales up and moves slightly less from its initial scaled state
+            previewWrapper.style.transform = `scale(${0.90 + 0.10 * contentProgress}) translateY(${5 * (1 - contentProgress) * 0.8}px)`;
+            const initialWrapperHeight = 60; // %
+            const finalWrapperHeightVH = 75; // vh
+            const currentPreviewSectionHeightPx = (currentHeightVH / 100) * viewportHeight;
+            const finalWrapperHeightPx = (finalWrapperHeightVH / 100) * viewportHeight; 
+            const initialWrapperHeightPx = (initialWrapperHeight / 100) * ((initial.heightVH/100)*viewportHeight * initial.scale); 
+            const currentWrapperHeightPx = initialWrapperHeightPx + (finalWrapperHeightPx - initialWrapperHeightPx) * contentProgress;
+            
+            if(currentPreviewSectionHeightPx > 0){
+                 previewWrapper.style.height = `${(currentWrapperHeightPx / currentPreviewSectionHeightPx) * 100}%`;
+            } else {
+                 previewWrapper.style.height = `${initialWrapperHeight}%`;
+            }
+
+        } else { 
+            previewSection.classList.remove('is-animating');
+            previewSection.classList.add('is-settled');
+            
+            previewSection.style.position = '';
+            previewSection.style.opacity = '';
+            previewSection.style.transform = '';
+            // ... (rest of your reset styles for .is-settled) ...
+            previewSection.style.top = '';
+            previewSection.style.left = '';
+            previewSection.style.width = '';
+            previewSection.style.height = '';
+            previewSection.style.borderRadius = '';
+            previewSection.style.padding = '';
+            previewSection.style.boxShadow = '';
+            previewSection.style.backgroundColor = '';
+
+            previewTitle.style.opacity = ''; previewTitle.style.transform = ''; previewTitle.style.fontSize = '';
+            previewSubtitle.style.opacity = ''; previewSubtitle.style.transform = ''; previewSubtitle.style.fontSize = ''; previewSubtitle.style.maxWidth = '';
+            previewWrapper.style.opacity = ''; previewWrapper.style.transform = ''; previewWrapper.style.height = '';
+            
+            previewPlaceholder.style.height = '0';
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Initial call
+});
+        // Select only the icon containers within the problem and feature sections
+        const iconContainers = document.querySelectorAll('#problem-icons .icon-container, #feature-icons .icon-container');
+
+        iconContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                const iconElement = container.querySelector('.icon'); // Find the main icon
+
+                // Ensure we found an icon and it has the necessary data attributes
+                if (iconElement && iconElement.dataset.originalIcon && iconElement.dataset.clickedIcon) {
+                    const originalIcon = iconElement.dataset.originalIcon;
+                    const clickedIcon = iconElement.dataset.clickedIcon;
+
+                    // Check which icon is currently displayed and toggle
+                    if (iconElement.classList.contains(originalIcon)) {
+                        iconElement.classList.remove(originalIcon);
+                        iconElement.classList.add(clickedIcon);
+                    } else if (iconElement.classList.contains(clickedIcon)) {
+                        iconElement.classList.remove(clickedIcon);
+                        iconElement.classList.add(originalIcon);
+                    }
+                    // Optional: Toggle an active class on the container if needed for styling
+                    // container.classList.toggle('is-active');
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>
