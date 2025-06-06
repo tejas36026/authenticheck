@@ -29,7 +29,6 @@ This project is currently a **fully client-side application** that uses `localSt
 
 *   **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+)
 *   **Data Visualization:** [Chart.js](https://www.chartjs.org/)
-*   **QR Code Generation:** [kjua.js](https://github.com/lrsjng/kjua)
 *   **Data Storage:** Browser `localStorage`
 
 ---
